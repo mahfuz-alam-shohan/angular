@@ -1,0 +1,64 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+<div class="page-title-area" style="height: 60px !important"></div>
+<section
+  class=""
+  style="
+    padding: 20px 0px 40px 0px;
+    font-family: 'Congenial';
+  "
+>
+  <div class="container" style="background: transparent">
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div
+          class="blog-details-desc"
+          style="
+            background-size: 100px;
+            padding: 20px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border: 1px solid #eeeeee;
+          "
+        >
+          <div class="article-image">
+            <h2 style="font-weight: normal; text-align: left">
+              News and Events
+            </h2>
+          </div>
+        </div>
+        <ng-container *ngIf="News_event_data != null">
+          <div
+            class="blog-details-desc"
+            style="
+              background-size: 100px;
+              padding: 20px;
+              border: 1px solid #eeeeee;
+            "
+            *ngFor="let item of News_event_data"
+          >
+            <div class="container">
+              <div class="row align-items-center">
+                <div class="col-lg-5 col-md-12">
+                  <div class="about-image">
+                    <img [src]="item.ShowAttachments[0].FilePath" alt="image" />
+                  </div>
+                </div>
+                <div class="col-lg-7 col-md-12">
+                  <div>
+                    <div>
+                      <p>{{ item.TitleEn }}</p>
+                      <p class="elip" [innerHTML]="item.DetailsEn"></p>
+                      <a [routerLink]="['/news-and-events', item.Id]"
+                        >Read more</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+
+<div class="bg-image">
+    <div class="container"
+        style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="row">
+            <div class="col-md-8 blog-details-desc">
+                <div style="min-height: 800px;">
+
+                    <h3>{{inputData.TitleEn}}</h3>
+                    <div class="container card"
+                        style="padding: 20px;background: transparent;border: none;">
+                        <div *ngIf="inputData.ShowAttachments" style="margin-bottom: 40px;">
+                            <img class="img-fluid"
+                                style="height: 300px; width: 100%; object-fit: cover; border-radius: 10px;"
+                                [src]="inputData.ShowAttachments[0].FilePath">
+                        </div>
+         
+                        <div class="container"
+                            style="text-align: justify !important;"
+                            *ngIf="inputData.DetailsEn">
+                            <div class="row">
+                                <div class="col-md-12"
+                                    [innerHTML]="inputData.DetailsEn">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <app-aside></app-aside>
+            </div>
+        </div>
+    </div>
+</div>

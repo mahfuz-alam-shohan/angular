@@ -1,0 +1,783 @@
+<!-- Start Value Trade Area -->
+<div style="background-color: #093032">
+  <div class="container">
+    <div class="row justify-content-center align-items-center">
+      <div class="col-lg-2 col-md-12 d-none d-sm-block">
+        <div class="text-center">
+          <a routerLink="/">
+            <img
+              src="assets/img/banner-image/logo1.png"
+              class="img-fluid"
+              alt="image"
+            />
+          </a>
+        </div>
+      </div>
+      <div class="col-lg-8 col-md-2" style="padding-top: 10px">
+        <div class="text-center">
+          <h3 style="color: #fff; margin-bottom: 0.8rem">
+            الجامعة الاحمدية السنية العالية (الكامل)
+          </h3>
+          <h2 style="color: #fff; font-family: 'HindSiliguri'">
+            জামেয়া আহমদিয়া সুন্নিয়া কামিল মাদরাসা
+          </h2>
+          <h2 style="color: #fff; font-family: 'BerkshireSwash'">
+            Jamea Ahmadia Sunnia Kamil Madrasah
+          </h2>
+          <h5 style="color: #fff; font-family: 'Congenial'; font-size: 16px">
+            Sholashahar, Chattagram | EIIN: 104702 | Madrasah Code: 17572
+          </h5>
+        </div>
+      </div>
+      <div class="col-lg-2 col-md-12 d-none d-sm-block">
+        <img
+          src="assets/img/banner-image/header.png"
+          alt="image"
+          style="height: 80%; width: 80%"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Start Navbar Area -->
+<div
+  class="navbar-area navbar-area-with-position-relative"
+  style="font-family: 'Congenial'"
+>
+  <div class="karlson-nav">
+    <div
+      class="container-fluid"
+      style="background-image: url('assets/img/school/navbar-img.png')"
+    >
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a
+          class="navbar-brand d-lg-none d-sm-none d-sm-block"
+          *ngIf="scrolled == 0"
+          routerLink="/"
+          ><img
+            src="assets/img/banner-image/logo1.png"
+            height="60"
+            width="60"
+            alt="logo"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div
+          class="collapse navbar-collapse mean-menu"
+          id="navbarSupportedContent"
+        >
+          <ul class="navbar-nav d-flex align-items-center">
+            <ng-container *ngFor="let item of AllmenuItems">
+              <!-- Top-level item with no dropdown -->
+              <ng-container ntainer *ngIf="item.Items.length === 0">
+                <li class="nav-item">
+                  <a
+                    [routerLink]="item.MenuUrl"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >{{ item.MenuName }}</a
+                  >
+                </li>
+              </ng-container>
+
+              <!-- Top-level item with dropdown -->
+              <ng-container *ngIf="item.Items.length > 0">
+                <li class="nav-item dropdown">
+                  <a
+                    class="nav-link dropdown-toggle"
+                    href="javascript:void(0)"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    {{ item.MenuName }}
+                    <i class="fa-solid fa-caret-down"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <ng-container *ngFor="let child of item.Items">
+                      <li
+                        class="nav-item"
+                        data-toggle="collapse"
+                        data-target=".navbar-collapse.show"
+                      >
+                        <a
+                          [routerLink]="child.MenuUrl"
+                          routerLinkActive="active"
+                          [routerLinkActiveOptions]="{
+                            exact: true
+                          }"
+                          class="nav-link"
+                          >{{ child.DisplayName }}</a
+                        >
+                      </li>
+                    </ng-container>
+                  </ul>
+                </li>
+              </ng-container>
+            </ng-container>
+
+            <!-- <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Administration <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/governing-body"
+                    routerLinkActive="active"
+                    [routerLinkActiveOptions]="{ exact: true }"
+                    class="nav-link"
+                    >Governing Body</a
+                  >
+                </li>
+
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/chairman-message"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Chairman Message</a
+                  >
+                </li>
+
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/hefz-Teacher"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Hefz Teacher</a
+                  >
+                </li>
+
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/hostel-in-Charge"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Hostel In-Charge</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/mpo-teacher"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >MPO Teacher</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/non-mpo-teacher"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Non-MPO Teacher</a
+                  >
+                </li>
+
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/mpo-office-staff"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >MPO Office Staff</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/non-mpo-office-staff"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Non-MPO Office Staff</a
+                  >
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Admission <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    target="_blank"
+                    href="https://beta.vortibd.com/home/"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Online Admission</a
+                  >
+                  <a
+                    routerLink="/admission-circular"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Admission Circular</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/prospectus"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Prospectus</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/admission-form"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Admission Form</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/download-admit-card"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Download Admit Card</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/admission-result"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Admission Result</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Facilities <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/classroom"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Classroom</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/computer-lab"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Computer Lab</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/science-lab"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Science Lab</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/library"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Library</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/hostel"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Hostel</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/play-ground"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Play Ground</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/canteen"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Canteen</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Co-Curriculum <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/quiz-competition"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Quiz Competition</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/qirat-competition"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Qirat Competition</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/hamad-naat-competition"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Hamad-Naat Competition</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/debate-competition"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Debate Competition</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/essay-competition"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Essay Competition</a
+                  >
+                </li>
+
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/scout"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Scout</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/sports-and-game"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Sports & Game</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Gallery <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/photo"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Photo</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/video-page"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Video</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Academic <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/academic-calendar"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Academic Calendar</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/class-routine"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Class Routine</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/under-construction"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Lesson Plan</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/syllabus-and-booklist"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Syllabus & Booklist</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/notice"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Notice</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/public-exam-result"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Public Exam Result</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/academic-rules"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Academic Rules</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="javascript:void(0)"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                style="margin-right: 0"
+              >
+                Departments <i class="fas fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/hefz"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Hefz</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/ebtedayee"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Ebtedayee</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/dakhil"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Dakhil</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/alim"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Alim</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/fazil"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Fazil</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/honours"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Honours</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/kamil"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Kamil</a
+                  >
+                </li>
+                <li
+                  class="nav-item"
+                  data-toggle="collapse"
+                  data-target=".navbar-collapse.show"
+                >
+                  <a
+                    routerLink="/masters"
+                    routerLinkActive="active"
+                    class="nav-link"
+                    >Masters</a
+                  >
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a
+                routerLink="/contact"
+                routerLinkActive="active"
+                class="nav-link"
+                style="margin-right: 0"
+                >Contact</a
+              >
+            </li> -->
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>

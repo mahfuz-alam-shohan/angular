@@ -1,0 +1,43 @@
+
+<div class="bg-image">
+  <div class="container" style="padding-top: 30px; padding-bottom: 30px">
+    <div class="row">
+      <div class="col-md-8 blog-details-desc">
+        <div style="min-height: 800px">
+          <h3>{{ inputData.TitleEn }}</h3>
+          <div class="container card" style="padding: 20px;background: transparent;border: none;">
+            <div class="row justify-content-start">
+              <ng-container *ngFor="let item of inputData.ShowAttachments">
+                <div
+                  class="col-lg-4 col-md-6 col-sm-6"
+                  style="margin-bottom: 30px"
+                >
+                  <div class="single-team-box">
+                    <div class="image">
+                      <img [src]="item.FilePath" />
+                    </div>
+                    <div class="content" *ngIf="item.Title != ''">
+                      <h4>{{ item.Title }}</h4>
+                    </div>
+                  </div>
+                </div>
+              </ng-container>
+
+              <div *ngIf="inputData.ShowAttachments == null">
+                <div
+                  class="page-title-content"
+                  style="margin-top: 100px; margin-bottom: 100px"
+                >
+                  <h2>No Data Found</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+       <div class="col-md-4">
+                <app-aside></app-aside>
+            </div>
+    </div>
+  </div>
+</div>

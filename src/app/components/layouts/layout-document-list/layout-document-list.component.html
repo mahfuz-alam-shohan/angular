@@ -1,0 +1,63 @@
+
+<div class="bg-image">
+    <div class="container"
+        style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="row">
+            <div class="col-md-8 blog-details-desc">
+                <div style="min-height: 800px;">
+
+                    <h3>{{inputData.TitleEn}}</h3>
+                    <div class="blog-details-desc"
+                        style="padding: 20px;background: #fff; border: 1px solid #eee;"
+                        *ngFor="let item of inputData.ShowAttachments">
+                        <div class="container"
+                            style="margin-bottom: 30px;">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="about-image">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg"
+                                            x="0px"
+                                            y="0px"
+                                            width="100"
+                                            height="100"
+                                            viewBox="0 0 50 50">
+                                            <path
+                                                d="M 7 2 L 7 48 L 43 48 L 43 14.59375 L 42.71875 14.28125 L 30.71875 2.28125 L 30.40625 2 Z M 9 4 L 29 4 L 29 16 L 41 16 L 41 46 L 9 46 Z M 31 5.4375 L 39.5625 14 L 31 14 Z M 15 22 L 15 24 L 35 24 L 35 22 Z M 15 28 L 15 30 L 31 30 L 31 28 Z M 15 34 L 15 36 L 35 36 L 35 34 Z">
+                                            </path>
+                                        </svg>
+
+                                    </div>
+                                    <div class="about-image">
+                                        <a 
+                                            [href]="item.FilePath"
+                                            target="_blank"
+                                            style="cursor: pointer; color: var(--mainColor);">Open File
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12">
+                                    <div>
+                                        <div>
+                                            <p class="elip">{{item.Title}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="inputData.ShowAttachments == null">
+                        <div class="page-title-content"
+                            style="margin-top: 100px; margin-bottom: 100px;">
+                            <h2>No Data Found</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <app-aside></app-aside>
+            </div>
+        </div>
+    </div>
+</div>

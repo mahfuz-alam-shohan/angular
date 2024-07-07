@@ -1,0 +1,64 @@
+<aside class="widget-area" id="secondary">
+    <section
+        class="widget widget_karlson_posts_thumb blog-details-desc"
+        style="
+            background-size: 100px;
+            padding: 20px;
+            padding-top: 0;
+            border: 1px solid #eeeeee;
+        "
+    >
+        <div class="page-title-content" style="margin-top: 0; text-align: left">
+            <ul>
+                <li>
+                    <a routerLink="/">
+                        <i class="fa-solid fa-house"></i>
+                    </a>
+                </li>
+                <li>{{ cuurent_menu_parent_name.DisplayNameParent }}</li>
+                <li>{{ current_main_route }}</li>
+            </ul>
+        </div>
+    </section>
+
+    <section
+        class="widget widget_karlson_posts_thumb blog-details-desc"
+        style="
+            background-size: 100px;
+            padding: 20px;
+            border: 1px solid #eeeeee;
+            margin-top: 15px;
+        "
+    >
+        <h3 class="widget-title">Suggested Video</h3>
+
+        <iframe
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/jA3E9L1cveI?si=rzGMwlg2_7lnnIug"
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+        ></iframe>
+    </section>
+
+    <section
+        class="widget widget_categories blog-details-desc"
+        style="
+            background-size: 100px;
+            padding: 20px;
+            border: 1px solid #eeeeee;
+            margin-top: 15px;
+        "
+    >
+        <h3 class="widget-title">Related Topics</h3>
+
+        <ul>
+            <li *ngFor="let item of allSubmenuItems">
+                <a [routerLink]="item.MenuUrl">{{ item.MenuName }}</a>
+            </li>
+        </ul>
+    </section>
+</aside>

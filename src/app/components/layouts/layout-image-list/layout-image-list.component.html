@@ -1,0 +1,44 @@
+
+<div class="bg-image">
+    <div class="container"
+        style="padding-top: 30px; padding-bottom: 30px;">
+        <div class="row">
+            <div class="col-md-8 blog-details-desc">
+                <div style="min-height: 800px;">
+
+                    <h3>{{inputData.TitleEn}}</h3>
+                    <div class="blog-details-desc"
+                        style="padding: 20px; background: transparent;border: none;"
+                        *ngFor="let item of inputData.ShowAttachments">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-4 col-md-12">
+                                    <div class="about-image">
+                                        <img [src]="item.FilePath"
+                                            alt="image">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-12">
+                                    <div>
+                                        <div>
+                                            <p class="elip">{{item.Title}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="inputData.ShowAttachments == null">
+                        <div class="page-title-content"
+                            style="margin-top: 100px; margin-bottom: 100px;">
+                            <h2>No Data Found</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <app-aside></app-aside>
+            </div>
+        </div>
+    </div>
+</div>

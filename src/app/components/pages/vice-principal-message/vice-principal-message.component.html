@@ -1,0 +1,114 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+
+<section class="blog-details-area pb-100" style="
+background-image: url('assets/img/banner-image/bg.png');  
+/* background-size: cover; */
+
+ /* background-repeat: repeat-y; */
+padding-top: 20px;
+font-family: 'Congenial';">
+    <div class="container" style="background: transparent;">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-details-desc" style="background-image: url('/assets/img/school/bg-popup.png');
+          background-size: 100px;padding: 20px; border: 1px solid #eeeeee;">
+                    <div class="article-image">
+                        <h2 style="font-weight: normal;" [ngStyle]="{'font-family': GetFontName()}">
+                            {{ 'COMMON.VP_MES_TEXT' | translate }}
+                        </h2>
+                        <img src="assets/img/banner-image/VicePrincipal.jpg" alt="image">
+                    </div>
+                    <div class="article-content">
+
+                        <p [ngStyle]="{'font-family': GetFontName()}">
+                            {{ 'COMMON.VP_MES_MAIN_01' | translate }}
+
+
+                        </p>
+                        <p [ngStyle]="{'font-family': GetFontName()}">
+
+                            {{ 'COMMON.VP_MES_MAIN_02' | translate }}
+
+                        </p>
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-12">
+
+                            </div>
+                            <div class="col-lg-6 col-md-12">
+
+                                <p>
+                                    Dr. A T M Liakat Ali
+                                    <br>
+                                    Vice Principal
+                                    <br>
+                                    Jamea Ahmadia Sunnia Kamil Madrasah
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+                <aside class="widget-area" id="secondary">
+
+                    <section class="widget widget_karlson_posts_thumb" style="background-image: url('/assets/img/school/bg-popup.png');
+          background-size: 100px;padding: 20px; padding-top: 0; border: 1px solid #eeeeee;">
+
+                        <div class="page-title-content" style="margin-top: 0; text-align: left;">
+                            <ul>
+                                <li>
+                                    <a routerLink="/">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li>Administration</li>
+                                <li>Vice Principal's Message</li>
+                            </ul>
+                        </div>
+
+                    </section>
+
+                    <section class="widget widget_karlson_posts_thumb" style="background-image: url('/assets/img/school/bg-popup.png');
+          background-size: 100px;padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
+                        <h3 class="widget-title">Suggested Video</h3>
+
+                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/MAz9kRnvSYE"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen=""></iframe>
+
+                    </section>
+
+                    <section class="widget widget_categories" style="background-image: url('/assets/img/school/bg-popup.png');
+          background-size: 100px;padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
+                        <h3 class="widget-title">Related Topics</h3>
+
+                        <ul>
+                            <li>
+                                <a routerLink="/governing-body">Governing Body</a>
+                            </li>
+                            <li>
+                                <a routerLink="/chairman-message">Chairman Message</a>
+                            </li>
+                            <li>
+                                <a routerLink="/principal-message">Principal Message</a>
+                            </li>
+                            <li>
+                                <a routerLink="/teacher">Teacher</a>
+                            </li>
+                            <li>
+                                <a routerLink="/office-staff">Office Staff</a>
+                            </li>
+                        </ul>
+
+                    </section>
+
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

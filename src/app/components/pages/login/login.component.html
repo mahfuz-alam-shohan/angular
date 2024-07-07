@@ -1,0 +1,69 @@
+<app-navbar></app-navbar>
+
+<!-- Start Page Title Area -->
+<div class="page-title-area page-title-bg2">
+    <div class="d-table">
+        <div class="d-table-cell">
+            <div class="container">
+                <div class="page-title-content">
+                    <h2>Login</h2>
+
+                    <ul>
+                        <li><a routerLink="/">Home</a></li>
+                        <li>Login</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="shape-img2"><img src="assets/img/shape/shape2.svg" alt="image"></div>
+    <div class="shape-img3"><img src="assets/img/shape/shape3.svg" alt="image"></div>
+    <div class="shape-img4"><img src="assets/img/shape/shape4.png" alt="image"></div>
+    <div class="shape-img5"><img src="assets/img/shape/shape5.png" alt="image"></div>
+    <div class="shape-img7"><img src="assets/img/shape/shape7.png" alt="image"></div>
+    <div class="shape-img8"><img src="assets/img/shape/shape8.png" alt="image"></div>
+    <div class="shape-img9"><img src="assets/img/shape/shape9.png" alt="image"></div>
+    <div class="shape-img10"><img src="assets/img/shape/shape10.png" alt="image"></div>
+</div>
+<!-- End Page Title Area -->
+
+<!-- Login Area -->
+<div class="container">
+    <div class="form-content">
+        <div class="form-header">
+            <h3>Login</h3>
+            <p>If you have an account with us, please log in.</p>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="your-email" placeholder="Your email">
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" id="your-password" placeholder="Your password">
+            </div>
+
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    </div>
+                </div>
+                <div class="col-6 text-end">
+                    <a class="form-link right" routerLink="/">Forgot password?</a>
+                </div>
+            </div>
+
+            <button type="submit" class="default-btn">Login</button>
+        </form>
+
+        <div class="form-footer">
+            <p>Don’t have an account? <a class="form-link" routerLink="/register">Register Now</a></p>
+        </div>
+    </div>
+</div>
+<!-- End Login Area -->

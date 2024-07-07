@@ -1,0 +1,329 @@
+// @font-face {
+//   font-family: 'HindSiliguri';
+//   src: url('/assets/fonts/HindSiliguri-Regular.ttf');
+//   content: 5;
+// }
+// @font-face {
+//   font-family: 'Congenial';
+//   src: url('/assets/fonts/Congenial-Regular.ttf');
+// }
+
+.Fazil{
+  font-family: 'Hind Siliguri'
+}
+.sect1 {
+  // height: 650 px;
+  color: #fff;
+  // background-image: url('../../../../assets/img/banner-image/bg.png');
+  /* background-size: cover; */
+  /* background-size: cover; */
+}
+
+.ticker-custom {
+  margin-right: 30px;
+  background-color: #ffffff;
+  line-height: 40px;
+}
+
+.ticker-custom:nth-child(even) {
+  opacity: 0.8;
+}
+
+.ticker-custom:last-child {
+  margin-right: 0;
+}
+
+::ng-deep .owl-dots {
+  // display: none;
+  bottom: 5px !important;
+}
+
+::ng-deep .owl-nav {
+  display: none;
+}
+
+
+@media only screen and (max-width: 767px) {
+  .widget-area1 {
+    margin-top: 10px;
+  }
+}
+/*****************************
+*	vertical news ticker with image
+******************************/
+.ticker-wrapper-v-image {
+  // display: flex;
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  
+}
+
+
+.news-ticker-v-image {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  animation: tic-v-image 20s cubic-bezier(1, 0, 0.5, 0) infinite;
+}
+.news-ticker-v-image:hover {
+  animation-play-state: paused;
+}
+.news-ticker-v-image li {
+  margin-bottom: 20px;
+}
+.news-ticker-v-image .thumbnail {
+  max-width: 100%;
+  height: auto;
+  float: left;
+  margin-right: 10px;
+  // display: inline-block;
+}
+.ticker-wrapper-v-image .clear {
+  clear: both;
+}
+.ticker-wrapper-v-image .news_title a {
+  color: #1c6547;
+  font-size: 20px;
+  font-weight: bold;
+}
+.ticker-wrapper-v-image .news_title {
+  line-height: 20px;
+}
+.ticker-wrapper-v-image .news-content {
+  color: #1d1d1d;
+  font-size: 16px;
+}
+@keyframes tic-v-image {
+  0% {
+    margin-top: 0;
+  }
+
+  25% {
+    margin-top: -16%;
+  }
+
+  50% {
+    margin-top: -32%;
+  }
+
+  75% {
+    margin-top: -50%;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+.tabsButton.active {
+  background-color: #093032 !important;
+  color: #ffffff !important;
+}
+
+.tabsButton {
+  // background-color: # !important;
+  color: #093032 !important;
+}
+$slides: 4;
+$secsPerSlide: 2.5;
+$slideSpeed: 4; /* lower = faster transition */
+$carouselId: 'pdCarousel1';
+$height: 380px;
+
+##{$carouselId} {
+  --pd-c-control-size: 1;
+  --pd-c-control-color: 170, 170, 170;
+  --pd-c-selector-color: 255, 165, 0;
+  --pd-c-selector-bg-color: 51, 51, 51;
+  --pd-c-control-bg-opacity: 0.1;
+  --pd-c-slides: #{$slides};
+  --pd-c-height: #{$height};
+  --pd-c-selector-border-r: 30%; /* 0-50 : square-to-circle */
+
+  &.pd-carousel {
+    width: 100%;
+    // height: var(--pd-c-height);
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* hide the radio inputs, we're using style labels as our selectors */
+  .pd-carousel__input {
+    display: none;
+  }
+
+  .pd-carousel__items {
+    // background: RGB(var(--pd-c-selector-bg-color));
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    width: calc(var(--pd-c-slides) * 100%); /* extend off canvas */
+    height: 100%;
+    overflow: hidden;
+    animation: pd-carousel #{$slides * $secsPerSlide}s infinite;
+  }
+  .pd-carousel__item {
+    width: calc(
+      100% / var(--pd-c-slides)
+    ); /* equivalent to 100% of original container */
+    height: 100%;
+    float: left;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+  }
+
+  @keyframes pd-carousel {
+    $rule-gap: (100 / $slides);
+    @for $slide from 1 through $slides {
+      $rule1: (($slide - 1) * $rule-gap);
+      $rule2: ($slide * $rule-gap - $slideSpeed);
+      $ml: ($rule1 * (-1 * $slides));
+
+      #{$rule1}#{'%'},
+      #{$rule2}#{'%'} {
+        margin-left: #{$ml}#{'%'};
+      }
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+  @keyframes pd-selector {
+    $rule-gap: (100 / $slides);
+    @for $slide from 1 through $slides {
+      $rule1: (($slide - 1) * $rule-gap);
+      $rule2: ($slide * $rule-gap - $slideSpeed);
+      $ml: ($slide - 1) * 1.5rem;
+
+      #{$rule1}#{'%'},
+      #{$rule2}#{'%'} {
+        margin-left: calc(#{$ml} * var(--pd-c-control-size));
+      }
+    }
+    100% {
+      margin-left: 0;
+    }
+  }
+}
+img {
+  height: var(--pd-c-height);
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.pd-carousel__item-contents,
+.tooltip {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  padding-left: calc(2rem * var(--pd-c-control-size));
+}
+* {
+  box-sizing: border-box;
+}
+/* Add this CSS for displaying the <p> tag below the image */
+.nameP {
+  text-align: center;
+  margin-top: 20px; /* You can adjust the margin as needed */
+  display: block; /* Ensure it's displayed as a block element */
+  color: #000; /* Set the text color to ensure visibility */
+}
+.carousel-inner {
+  img {
+    float: left;
+    width: 100%;
+    height: 500px;
+    object-fit: fill;
+  }
+}
+button:hover {
+  background-color: blue /* Change the background color on hover */
+}
+.prospectus{
+  background-color: #d9e2f3;
+  padding-bottom: 5rem;
+}
+/* Styling for the "Prospectus of" heading */
+.prospectus-heading {
+  text-align: center;
+  margin-top: 70px;
+ 
+}
+.prospectus-heading h3 {
+  font-size: 1.2em;
+  color: #1c1280; 
+  
+}
+.prospectus-heading h4 {
+  font-size: 1.5em;
+  color: #000;
+
+}
+h2 {
+  font-size: 24px; /* Adjust the font size as needed */
+  background-color: #4473c5;
+  color: white; /* Change the text color */
+  margin-top: 20px; /* Add margin for spacing */
+  padding-left: 10px;
+}
+
+.viewAll:hover{
+ color: #4473c5;
+  
+}
+.fixed-button{
+  float: right;
+}
+
+@media screen and (min-width: 280px)  {
+.fixed-button .btn {
+      position: absolute;
+      font-size: 16px;
+      padding: 10px 20px;
+      background: #ff7c00;
+      color: #fff;
+      text-decoration: none;
+      pointer-events: all;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 50px;
+      border-top-left-radius: 50px;
+      position: fixed;    
+      bottom: 10;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+      justify-content: center;
+      align-items: center;   
+      float: right;  
+ 
+  }
+  @media screen and (max-width: 768px){
+    .fixed-button .btn {
+      position: absolute;
+      font-size: 16px;
+      padding: 10px 20px;
+      background: #ff7c00;
+      color: #fff;
+      text-decoration: none;
+      pointer-events: all;
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom-left-radius: 50px;
+      border-top-left-radius: 50px;
+      position: fixed;    
+      bottom: 10;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+      justify-content: center;
+      align-items: center;  
+}
+  }
+}

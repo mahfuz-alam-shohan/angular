@@ -1,0 +1,169 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+<!-- Leatest Notice Sections Start -->
+<section
+  class="blog-details-area"
+  style="
+    background-image: url('assets/img/banner-image/bg-popup.png');
+    /* background-size: cover; */
+
+    /* background-repeat: repeat-y; */
+    padding-top: 20px;
+    font-family: 'HindSiliguri';
+  "
+>
+
+
+ <!-- Start Login Button----- -->
+  <div class="fixed-button">
+    <a
+      href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F"
+      routerLinkActive="active"
+      class="btn"
+      ><i class="fas fa-sign-in-alt"></i> Login
+    </a>
+  </div>
+<div class="container" style="background: transparent; margin-bottom: 15px">
+  <div
+    class="row"
+    style="
+      background-image: url('/assets/img/school/bg-popup.png');
+      background-size: 100px;
+      margin: 0;
+      border: 2px solid #127176;
+    "
+  >
+    <div
+      class="col-md-auto"
+      style="background-color: #127176; text-align: center"
+    >
+      <h4 style="margin-top: 0.25em; color: #ffffff">Latest Notices:</h4>
+    </div>
+
+    <div class="col-md-10">
+      <ng-marquee [stopOnHover]="true" duration="40s">
+        <mark class="ticker-custom" *ngFor="let ticker of dynamicTape">
+          <a
+            href="assets/img/blog-image/{{ ticker.Link }}"
+            target="_blank"
+            target="_blank"
+            >{{ ticker.Text }}</a
+          >
+        </mark>
+      </ng-marquee>
+    </div>
+  </div>
+</div>
+<!-- Leatest Notice Sections Ends-->
+</section>
+<!-- Body Start -->
+<section class="body">
+  <div class="container">
+    <!-- Heading Start -->
+    <div class="row" style="padding: 30px 0px">
+      <div class="col-md-3"></div>
+      <div class="col-md-6" style="background: #127176; text-align: center">
+        <h1
+          style="
+            color: white !important;
+            font-size: 26px;
+            margin: 0;
+            padding: 10px 0px;
+          "
+        >
+          Online Admisssion Panel
+        </h1>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <!-- Heading Ends -->
+    <!-- Table part Starts -->
+    <div class="row" style="margin-bottom: 20px">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <table class="table table-bordered custom-table">
+          <thead>
+            <tr>
+              <th>Program</th>
+              <th>Apply Link</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ebtedayee One to Dakhil Nine Admission</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size: 20px; color: red;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Alim Admission</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size: 20px; color: red;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Fazil (Pass) Admission</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size: 20px; color: red;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Fazil (Honors) Admission</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size: 20px; color: red;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Kamil Admission</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size: 20px; color: red;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Kamil (Masters) Admission</td>
+              <td><a href="https://vortibd.com/institute/214/32">
+                Apply 
+                <i class="fas fa-check" style="font-size: 20px; color: white;"></i>
+            </a></td>
+            </tr>
+            <tr>
+              <td>Hefz</td>
+              <td><a href="#">
+                Apply 
+                <i class="fa fa-close" style="font-size:20px;color:red"></i>
+            </a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <!-- Table part Ends -->
+    <!-- Helpline Part Starts -->
+    <div class="row" style="padding: 20px 0px 50px 0px">
+      <div class="col-md-2"></div>
+      <div class="col-md-8 d-flex justify-content-between">
+        <div class="help-line">
+          <p class="help">Help Line</p>
+          <p class="mobile">09643224488</p>
+          <p class="date">Sun to Thu 9.30 AM to 5:30 PM</p>
+          <p class="date">(Except Govt. Holiday)</p>
+        </div>
+        <div class="madrasha-it">
+          <p class="help">Madrasah IT</p>
+          <p class="mobile">01818559215</p>
+          <p class="date">Sun to Thu 9.30 AM to 5:30 PM</p>
+          <p class="date">(Except Govt. Holiday)</p>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+    <!-- Help line part Ends -->
+  </div>
+</section>
+
+<!-- Body Ends -->

@@ -1,0 +1,90 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+<section class="blog-details-area pb-100" style="
+background-image: url('assets/img/banner-image/bg.png');  
+/* background-size: cover; */
+
+ /* background-repeat: repeat-y; */
+padding-top: 20px;
+font-family: 'Congenial';">
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div class="container"
+        *ngIf="currentContentData.LayOut == 1 && currentContentData.FileType == 1">
+        <app-layout-image-list [inputData]="currentContentData"></app-layout-image-list>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div class="container"
+        *ngIf="currentContentData.LayOut == 2 && currentContentData.FileType == 1">
+        <app-layout-image-single [inputData]="currentContentData"></app-layout-image-single>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div class="container"
+        *ngIf="currentContentData.LayOut == 3 && currentContentData.FileType == 1">
+        <app-layout-image-multiple [inputData]="currentContentData"></app-layout-image-multiple>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div class="container"
+        *ngIf="currentContentData.LayOut == 1 && currentContentData.FileType == 3">
+        <app-layout-document-list [inputData]="currentContentData"></app-layout-document-list>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div class="container"
+        *ngIf="currentContentData.LayOut == 2 && currentContentData.FileType == 3">
+        <app-layout-document-single [inputData]="currentContentData"></app-layout-document-single>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData != null">
+    <div style="margin-top: 50px"
+        *ngIf="currentContentData.LayOut == 2 && currentContentData.FileType == 0">
+        <div class="d-table">
+            <div class="d-table-cell">
+                <div class="container">
+                    <div class="page-title-content"
+                        style="margin-top: 100px;">
+                        <h2>No Data Found</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="!fetchinData && currentContentData == null">
+        <div class="container"
+            style="padding-top: 30px; padding-bottom: 30px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="min-height: 800px;">
+
+                        <h3>{{currentMenuItem.DisplayName}}</h3>
+                        <div class="container card"
+                            style="padding: 20px;">
+                            <div class="page-title-content"
+                                style="margin-top: 100px; margin-bottom: 100px;">
+                                <h2>No Data Found</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</ng-container>
+
+<ng-container *ngIf="fetchinData">
+    <div aria-hidden="true"
+        class="col-lg-12 col-md-12">
+        <h5 class="placeholder-glow">
+            <span class="placeholder col-12"
+                style="height: 800px;"></span>
+        </h5>
+    </div>
+</ng-container>
+</section>
