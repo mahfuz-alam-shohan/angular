@@ -1,0 +1,212 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+<section class="blog-details-area pb-100" style="
+background-image: url('assets/img/banner-image/bg.png');  
+/* background-size: cover; */
+
+ /* background-repeat: repeat-y; */
+padding-top: 20px;
+font-family: 'Congenial';">
+<div class="container">
+  <div class="card mt-3 mb-3" *ngIf="!fetchinData">
+    <div class="card-body blog-details-desc">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-table" *ngIf="!fetchinData && mainResponse.length == 0">
+            <div class="d-table-cell">
+              <div class="container">
+                <div class="page-title-content">
+                  <h2>No Album Data found</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-table" *ngIf="fetchinData && mainResponse.length == 0">
+            <div class="d-table-cell">
+              <div class="container">
+                <div class="page-title-content">
+                  <ng-container class="spinner-overlay">
+                    <div
+                      class="spinner-border spinner-border-lg text-primary"
+                      role="status"
+                    >
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <span class="fetching-data-text">Fetching Data...</span>
+                  </ng-container>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <ng-container *ngIf="!fetchinData && mainResponse.length != 0">
+            <div style="margin-bottom: 50px" class="blog-details-desc">
+              <div class="d-table">
+                <div class="d-table-cell">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <ng-container *ngIf="folders.length">
+                          <div
+                            class="d-flex align-items-center"
+                            style="font-size: 26px"
+                          >
+                            <a
+                              style="cursor: pointer"
+                              [routerLink]="['/video-gallery']"
+                              >Home</a
+                            >
+                            <div class="mx-2">/</div>
+                            <ng-container
+                              *ngFor="
+                                let path of folders;
+                                let last = last;
+                                trackBy: trackByFn2
+                              "
+                            >
+                              <ng-container *ngIf="!last">
+                                <a
+                                  style="cursor: pointer"
+                                  class="ChildFolder"
+                                  (click)="Goto(path.id)"
+                                  >{{ path.name }}</a
+                                >
+                              </ng-container>
+                              <ng-container *ngIf="last">
+                                <div style="color: #0d6efd">
+                                  {{ path.name }}
+                                </div>
+                              </ng-container>
+                              <ng-container *ngIf="!last">
+                                <div class="mx-2">/</div>
+                              </ng-container>
+                            </ng-container>
+                          </div>
+                        </ng-container>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row" *ngIf="album.length != 0">
+              <div class="d-table">
+                <div class="d-table-cell">
+                  <div class="container">
+                    <div class="text-start">
+                      <h3>Folders</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <ng-container *ngFor="let album of album">
+                <div class="col-lg-4 col-md-6 mb-3">
+                  <div class="card cardPhoto h-100 shadow">
+                    <a [routerLink]="['/videoFolder', album.Id]">
+                      <!-- <div class="image-container"> -->
+                      <svg
+                        class="loading-spinner"
+                        viewBox="0 0 16 18"
+                        *ngIf="!imageLoaded"
+                      >
+                        <path
+                          class="path"
+                          fill="none"
+                          stroke-width="2"
+                          d="M7.21487 1.2868C7.88431 0.9044 8.73031 0.9044 9.39974 1.2868L9.40283 1.28856L14.4613 4.20761C15.1684 4.598 15.5746 5.33558 15.5746 6.11465V8.99996V11.8853C15.5746 12.6507 15.1632 13.3848 14.4617 13.7721L9.37973 16.7132C8.71029 17.0956 7.86428 17.0956 7.19485 16.7132L7.19088 16.7109L2.11279 13.772C1.40602 13.3816 1 12.6441 1 11.8653V8.98995V6.11465C1 5.31458 1.44381 4.59039 2.10827 4.21051L7.21487 1.2868Z"
+                        />
+                      </svg>
+                      <!-- <div class="image-overlay"></div> -->
+                      <img
+                        [src]="
+                          album.ThumbnailLink
+                            ? TransformUrl(album.ThumbnailLink)
+                            : '/assets/img/video_reel.PNG'
+                        "
+                        class="card-img-top"
+                        alt="Card Image"
+                        (load)="onImageLoad()"
+                      />
+                      <!-- </div> -->
+                      <div
+                        class="card-body d-flex align-items-center justify-content-center mt-4"
+                      >
+                        <h5 class="card-title">{{ album.AlbumName }}</h5>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+
+            <section
+              class="blog-area gallery-section"
+              *ngIf="files.length != 0"
+            >
+              <div class="d-table">
+                <div class="d-table-cell">
+                  <div class="container">
+                    <div class="text-start">
+                      <h3>Videos</h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="container">
+                <div class="container">
+                  <div class="gallery-container">
+                    <div class="gallery">
+                      <ng-container *ngFor="let item of files">
+                        <iframe
+                          [src]="convertToEmbedUrl(item.VideoId) | safe"
+                          width="100%"
+                          height="315"
+                          style="margin-bottom: 20px"
+                          frameborder="0"
+                          webkitallowfullscreen
+                          mozallowfullscreen
+                          allowfullscreen
+                        ></iframe>
+                      </ng-container>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- <section class="blog-area gallery-section">
+                            <div class="container">
+                                <div class="container">
+                                    <div class="gallery-container">
+                                        <div class="gallery">
+                                            <a *ngFor="let image of album"
+                                                class="gallery__item"
+                                                [href]="TransformUrl(image.ImageLink)"
+                                                [title]="image.Id">
+                                                <img [src]="TransformUrl(image.ImageLink)"
+                                                    [alt]="TransformUrl(image.ImageLink)"
+                                                    class="popup-btn"
+                                                    style="width: 100%;
+                                                    height: 100%;
+                                                    object-fit: scale-down;" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section> -->
+          </ng-container>
+        </div>
+      </div>
+    </div>
+    <br />
+  </div>
+  <div aria-hidden="true" *ngIf="fetchinData" class="col-lg-12 col-md-12">
+    <h5 class="placeholder-glow">
+      <span class="placeholder col-12" style="height: 200px"></span>
+    </h5>
+  </div>
+</div>
+</section>
+

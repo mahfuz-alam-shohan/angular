@@ -1,0 +1,102 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+<section class="blog-details-area pb-100" style="
+background-image: url('assets/img/banner-image/bg.png');  
+/* background-size: cover; */
+
+ /* background-repeat: repeat-y; */
+padding-top: 20px;
+font-family: 'Congenial';">
+<div class="container">
+  <!-- <div class="card mt-3 mb-3"
+        *ngIf="!fetchinData"> -->
+  <!-- <div class="card-body"> -->
+  <div class="row" style="margin-top: 50px;">
+    <div
+      class="col-md-3 blog-details-desc "
+      style="
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 14px;
+        max-height: 500px;
+      "
+    >
+      <div align="left">
+        <p style="font-size: 26px">Gallery</p>
+      </div>
+      <div class="list-group list-group-flush">
+        <button
+          (click)="selectItem()"
+          [class.active]="selectedItem === 'photos'"
+          class="newA linkStyle list-group-item list-group-item-action"
+        >
+          Photos
+        </button>
+        <button
+          [class.active]="selectedItem === 'videos'"
+          class="newA linkStyle list-group-item list-group-item-action active"
+        >
+          Videos
+        </button>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div style="min-height: 800px">
+        <div>
+          <!-- <h3>Videos</h3>
+          <hr /> -->
+          <div class="container">
+            <ng-container *ngIf="VideoAlbums == null" class="spinner-overlay">
+              <span class="fetching-data-text">No Data Found</span>
+            </ng-container>
+
+            <div class="row" *ngIf="VideoAlbums != null">
+              <ng-container *ngFor="let album of VideoAlbums">
+                <div class="col-lg-4 col-md-6 mb-3">
+                  <div class="card cardPhoto h-100 shadow">
+                    <a [routerLink]="['/videoFolder', album.Id]">
+                      <div class="image-container">
+                        <svg
+                          class="loading-spinner"
+                          viewBox="0 0 16 18"
+                          *ngIf="!imageLoaded"
+                        >
+                          <path
+                            class="path"
+                            fill="none"
+                            stroke-width="2"
+                            d="M7.21487 1.2868C7.88431 0.9044 8.73031 0.9044 9.39974 1.2868L9.40283 1.28856L14.4613 4.20761C15.1684 4.598 15.5746 5.33558 15.5746 6.11465V8.99996V11.8853C15.5746 12.6507 15.1632 13.3848 14.4617 13.7721L9.37973 16.7132C8.71029 17.0956 7.86428 17.0956 7.19485 16.7132L7.19088 16.7109L2.11279 13.772C1.40602 13.3816 1 12.6441 1 11.8653V8.98995V6.11465C1 5.31458 1.44381 4.59039 2.10827 4.21051L7.21487 1.2868Z"
+                          />
+                        </svg>
+                        <div class="image-overlay"></div>
+                        <img
+                          [src]="'/assets/img/youtube.png'"
+                          class="card-img-top fit-image"
+                          alt="Card Image"
+                          (load)="onImageLoad()"
+                        />
+                      </div>
+                      <div
+                        class="card-body d-flex align-items-center justify-content-center mt-4"
+                      >
+                        <h5 class="card-title">{{ album.Name }}</h5>
+                      </div>
+                    </a>
+                  </div>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- </div> -->
+  <br />
+  <!-- </div> -->
+  <div aria-hidden="true" *ngIf="fetchinData" class="col-lg-12 col-md-12">
+    <h5 class="placeholder-glow">
+      <span class="placeholder col-12" style="height: 200px"></span>
+    </h5>
+  </div>
+</div>
+</section>
+

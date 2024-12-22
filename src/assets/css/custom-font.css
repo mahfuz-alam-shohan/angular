@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Congenial";
+    src: local("Congenial"), url(../fonts/Congenial-Regular.ttf) format("truetype");
+}
+
+@font-face {
+    font-family: "Jameel Noori Nastaleeq";
+    src: local("Jameel Noori Nastaleeq"), url(../fonts/Jameel-Noori-Nastaleeq-Regular.ttf) format("truetype");
+}
+ 
+ @font-face {
+    font-family: "BerkshireSwash";
+    src: local("BerkshireSwash"), url(../fonts/BerkshireSwash-Regular.ttf) format("truetype");
+}
+ @font-face {
+       font-family: 'HindSiliguri';
+     src:local("HindSiliguri"), url('../fonts/HindSiliguri-Regular.ttf') format("truetype");;
+    }
