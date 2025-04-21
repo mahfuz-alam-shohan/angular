@@ -27,7 +27,7 @@
     "ngx-owl-carousel": "^2.0.7",
     "ngx-owl-carousel-o": "^16.0.0",
     "ngx-scrolltop": "^5.0.0",
-    "node": "^21.7.1",
+    "node": "^21.7.3",
     "popper.js": "^1.16.1",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",

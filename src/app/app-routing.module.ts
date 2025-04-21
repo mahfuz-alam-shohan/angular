@@ -156,7 +156,7 @@ const routes: Routes = [
   { path: "kamil", component: TemplatePageComponent },
   { path: "masters", component: TemplatePageComponent },
   { path: "ebtedayee", component: TemplatePageComponent },
-  { path: "ebtedayee", component: TemplatePageComponent },
+  { path: "notice", component: NoticeComponent },
 
   {
     path: "computer-lab",
