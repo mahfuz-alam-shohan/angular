@@ -1,4 +1,4 @@
-<app-navbar-style-two-2></app-navbar-style-two-2>
+<!-- <app-navbar-style-two-2></app-navbar-style-two-2>
 
 <section class="blog-details-area pb-100" style="
 background-image: url('assets/img/banner-image/bg.png');  
@@ -201,4 +201,239 @@ font-family: 'Congenial';">
         </div>
 
     </div>
-</section>
+</section> -->
+<app-navbar-style-two-2></app-navbar-style-two-2>
+
+<div class="container">
+    <div class="card mt-3 mb-3" *ngIf="!fetchinData">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-12">
+                    <div style="min-height: 800px">
+                        <div>
+                            <h3 style="text-align: center;">{{ selectedItemName }}</h3>
+                            <hr />
+                            <div
+                                class="container"
+                                *ngIf="
+                                    selectedItem &&
+                                    selectedItem === 'governing-body'
+                                "
+                            >
+                                <ng-container
+                                    *ngIf="GBs == null"
+                                    class="spinner-overlay"
+                                >
+                                    <span class="fetching-data-text"
+                                        >No Data Found</span
+                                    >
+                                </ng-container>
+
+                                <div class="row justify-content-center" *ngIf="GBs != null">
+                                    <!-- First Row: 1 Image (GBs1) -->
+                                    <ng-container *ngIf="GBs1 != null">
+                                        <div class="col-lg-5 col-md-6 col-sm-6">
+                                            <div class="single-team-box">
+                                                <div class="image">
+                                                    <img [src]="GBs1.ImagePath" alt="team" />
+                                                </div>
+                                                <div class="content">
+                                                    <h3>{{ GBs1.Name }}</h3>
+                                                    <span>{{ GBs1.GBDesignation }}</span>
+                                                    <span>{{ GBs1.Rank }}</span>
+                                                    <span>{{ GBs1.InstitutePosition }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                
+                                    <!-- Second Row: 2 Images (GBss) -->
+                                    <ng-container *ngIf="GBss != null">
+                                        <div class="row justify-content-center">
+                                            <ng-container *ngFor="let item of GBss">
+                                                <div class="col-lg-5 col-md-6 col-sm-6">
+                                                    <div class="single-team-box">
+                                                        <div class="image">
+                                                            <img [src]="item.ImagePath" alt="team" />
+                                                        </div>
+                                                        <div class="content">
+                                                            <h3>{{ item.Name }}</h3>
+                                                            <span>{{ item.GBDesignation }}</span>
+                                                            <span>{{ item.Rank }}</span>
+                                                            <span>{{ item.InstitutePosition }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+                                
+                                    <!-- Third Row: 3 Images (GBs3) -->
+                                    <ng-container *ngIf="GBs3 != null">
+                                        <div class="row justify-content-center">
+                                            <ng-container *ngFor="let item of GBs3">
+                                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                                    <div class="single-team-box">
+                                                        <div class="image">
+                                                            <img [src]="item.ImagePath" alt="team" />
+                                                        </div>
+                                                        <div class="content">
+                                                            <h3>{{ item.Name }}</h3>
+                                                            <span>{{ item.GBDesignation }}</span>
+                                                            <span>{{ item.Rank }}</span>
+                                                            <span>{{ item.InstitutePosition }}</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </ng-container>
+                                
+                                    <!-- Fourth Row: 5 Images (GBs4) -->
+                                    <div class="container">
+                                        <div class="grid-container" *ngIf="GBs4">
+                                            <ng-container *ngFor="let item of GBs4">
+                                                <div class="single-team-box">
+                                                    <div class="image">
+                                                        <img [src]="item.ImagePath" alt="team" />
+                                                    </div>
+                                                    <div class="content">
+                                                        <h3>{{ item.Name }}</h3>
+                                                        <span>{{ item.GBDesignation }}</span>
+                                                        <span>{{ item.Rank }}</span>
+                                                        <span>{{ item.InstitutePosition }}</span>
+                                                    </div>
+                                                </div>
+                                            </ng-container>
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                                                 
+                                  
+                                </div>
+                                
+                                <div
+                                    class="row justify-content-center"
+                                    *ngIf="allGBMenbers != null">
+                                    <ng-container *ngFor="let item of allGBMenbers">
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-team-box">
+                                                <div class="image">
+                                                    <img
+                                                        [src]="item.ImagePath"
+                                                        alt="team"
+                                                    />
+                                                </div>
+                                                <div class="content">
+                                                    <h3>{{ item.Name }}</h3>
+                                                    <span>{{ item.GBDesignation }}</span>
+                                                    <span>{{ item.Rank }}</span>
+                                                    <span>{{ item.InstitutePosition }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div
+                                class="container"
+                                *ngIf="
+                                    selectedItem &&
+                                    selectedItem === 'teacher-information'
+                                "
+                            >
+                                <ng-container
+                                    *ngIf="TeacherInfo == null"
+                                    class="spinner-overlay"
+                                >
+                                    <span class="fetching-data-text"
+                                        >No Data Found</span
+                                    >
+                                </ng-container>
+
+                                <div
+                                    class="row justify-content-center"
+                                    *ngIf="TeacherInfo != null"
+                                >
+                                    <ng-container
+                                        *ngFor="let item of TeacherInfo"
+                                    >
+                                        <div class="col-lg-4 col-md-6 col-sm-6">
+                                            <div class="single-team-box">
+                                                <div class="image">
+                                                    <img
+                                                        [src]="item.ImageLink"
+                                                        alt="team"
+                                                    />
+                                                </div>
+                                                <div class="content">
+                                                    <h3>
+                                                        {{ item.EmployeeName }}
+                                                    </h3>
+                                                    <span>
+                                                        {{
+                                                            item.Designation
+                                                        }}</span
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </div>
+                            </div>
+                            <div
+                                class="container"
+                                *ngIf="
+                                    selectedItem &&
+                                    selectedItem !== 'governing-body' &&
+                                    selectedItem !== 'teacher-information'
+                                "
+                            >
+                                <ng-container
+                                    *ngIf="GBms == null"
+                                    class="spinner-overlay"
+                                >
+                                    <span class="fetching-data-text"
+                                        >No Data Found</span
+                                    >
+                                </ng-container>
+
+                                <div class="row justify-content-center">
+                                    <article class="col-md-12 text-justify p-4">
+                                        <div>
+                                            <img
+                                                alt="Message"
+                                                class="img-thumbnail img-fluid"
+                                                [src]="GBms1.GBImagePath"
+                                                style="
+                                                    float: left;
+                                                    height: 220px;
+                                                    margin: 0px 15px 10px 0px;
+                                                    width: 200px;
+                                                "
+                                            />
+                                        </div>
+
+                                        <p
+                                            style="text-align: justify"
+                                            [innerHTML]="GBms1.DetailsEn"
+                                        ></p>
+
+                                        <!-- <p><strong></strong><br></p> -->
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+    <div aria-hidden="true" *ngIf="fetchinData" class="col-lg-12 col-md-12">
+        <h5 class="placeholder-glow">
+            <span class="placeholder col-12" style="height: 200px"></span>
+        </h5>
+    </div>
+</div>

@@ -1,0 +1,98 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+
+<section class="blog-details-area pb-100" style="padding-top: 50px">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-details-desc">
+                    <section
+                        class="widget widget_karlson_posts_thumb"
+                        style="
+                            padding: 20px;
+                            padding-top: 0;
+                            border: 1px solid #eeeeee;
+                        "
+                    >
+                        <div
+                            class="page-title-content"
+                            style="margin-top: 0; text-align: left"
+                        >
+                            <ul>
+                                <li>
+                                    {{ cheif_patron_data.GBDesignationName }}
+                                </li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="row justify-content-center">
+                        <article class="col-md-12 text-justify p-4">
+                            <div>
+                                <img
+                                    alt="Message From The Chairman"
+                                    class="img-thumbnail img-fluid"
+                                    [src]="cheif_patron_data.GBImagePath"
+                                    style="
+                                        float: left;
+                                        height: 220px;
+                                        margin: 0px 15px 10px 0px;
+                                        width: 200px;
+                                    "
+                                />
+                            </div>
+                            <p [innerHTML]="cheif_patron_data.DetailsEn"></p>
+                            <p>
+                                <strong
+                                    >Maj Gen Sheikh Mohammad Sarwar Hossain,
+                                    SUP, ndc, psc</strong
+                                ><br />
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <!-- <aside class="widget-area" id="secondary">
+                    <section class="widget widget_karlson_posts_thumb"
+                        style="background-color: #FFFFFF; padding: 20px; padding-top: 0; border: 1px solid #eeeeee;">
+                        <div class="page-title-content" style="margin-top: 0; text-align: left;">
+                            <ul>
+                                <li>
+                                    <a routerLink="/">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li>Administration</li>
+                                <li>Cheif Patron Message</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <section class="widget widget_karlson_posts_thumb"
+                        style="background-color: #FFFFFF; padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
+                        <h3 class="widget-title">Suggested Video</h3>
+
+                        <iframe width="340" height="315" src="https://www.youtube.com/embed/1FpUNCvdZDg?si=R0J4O9hN8_UDTWcp" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </section>
+                    <section class="widget widget_categories"
+                        style="background-color: #FFFFFF; padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
+                        <h3 class="widget-title">Administration</h3>
+                        <ul>
+                            <li>
+                                <a routerLink="/governing-body">Governing Body</a>
+                            </li>
+                            <li>
+                                <a routerLink="/principal-message">Principal Message</a>
+                            </li>
+                            <li>
+                                <a routerLink="/chairman-message">Chairman Message</a>
+                            </li>
+                            <li>
+                                <a routerLink="/chairman-message">Cheif Patron Message</a>
+                            </li>
+                        </ul>
+                    </section>
+                </aside> -->
+                <app-aside></app-aside>
+            </div>
+        </div>
+    </div>
+</section>

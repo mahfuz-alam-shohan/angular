@@ -1,0 +1,36 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+
+<section class="blog-details-area pb-100" style="padding-top: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-12">
+                <div class="blog-details-desc">
+                    <section class="widget widget_karlson_posts_thumb"
+                        style="padding: 20px; padding-top: 0; border: 1px solid #eeeeee;">
+                        <div class="page-title-content" style="margin-top: 0; text-align: left;">
+                            <ul>
+                                <li>{{cheif_patron_data.GBDesignationName}}</li>
+                            </ul>
+                        </div>
+                    </section>
+                    <div class="row justify-content-center">
+                        <article class="col-md-12 text-justify  p-4 ">
+                            <div><img alt="Message From The Chairman" class="img-thumbnail img-fluid"
+                                    [src]="cheif_patron_data.GBImagePath"
+                                    style="float:left; height:220px; margin:0px 15px 10px 0px; width:200px">
+                            </div>
+                            <p [innerHTML]="cheif_patron_data.DetailsEn"></p>
+                            <p><strong>Maj Gen Sheikh Mohammad Sarwar Hossain, SUP, ndc, psc</strong><br>
+                            </p>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <app-aside></app-aside>
+            </div>
+        </div>
+    </div>
+</section>
+
+

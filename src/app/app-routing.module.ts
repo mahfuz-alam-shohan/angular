@@ -44,8 +44,8 @@ import { MissionAndVisionComponent } from "./components/pages/mission-and-vision
 import { InfrastructureComponent } from "./components/pages/infrastructure/infrastructure.component";
 import { AchievementComponent } from "./components/pages/achievement/achievement.component";
 import { GoverningBodyComponent } from "./components/pages/governing-body/governing-body.component";
-import { ChairmanMessageComponent } from "./components/pages/chairman-message/chairman-message.component";
-import { PrincipalMessageComponent } from "./components/pages/principal-message/principal-message.component";
+import { ChairmanMessegeComponent } from "./components/pages/chairman-messege/chairman-messege.component";
+
 import { TeacherComponent } from "./components/pages/teacher/teacher.component";
 import { OfficeStaffComponent } from "./components/pages/office-staff/office-staff.component";
 import { AcademicCalendarComponent } from "./components/pages/academic-calendar/academic-calendar.component";
@@ -87,7 +87,7 @@ import { PhotoComponent } from "./components/pages/photo/photo.component";
 import { VideoPageComponent } from "./components/pages/video-page/video-page.component";
 import { EPaymentSystemComponent } from "./components/pages/e-payment/e-payment.component";
 import { ContactOComponent } from "./components/pages/contact-o/contact-o.component";
-import { VicePrincipalMessageComponent } from "./components/pages/vice-principal-message/vice-principal-message.component";
+
 import { NonMpoTeacherComponent } from "./components/pages/non-mpo-teacher/non-mpo-teacher.component";
 import { MpoTeacherComponent } from "./components/pages/mpo-teacher/mpo-teacher.component";
 import { MpoOfficeStaffComponent } from "./components/pages/mpo-office-staff/mpo-office-staff.component";
@@ -104,6 +104,10 @@ import { NewAndEventsItemsComponent } from "./components/pages/new-and-events-it
 import { AchievementsItemComponent } from "./components/pages/achievements-item/achievements-item.component";
 import { NewAndEventsComponent } from "./components/pages/new-and-events/new-and-events.component";
 import { AchievementsComponent } from "./components/pages/achievements/achievements.component";
+import { CheifPatronComponent } from "./components/pages/cheif-patron/cheif-patron.component";
+import { PrincipalMessagesComponent } from "./components/pages/principal-messages/principal-messages.component";
+import { ViceChairmanComponent } from "./components/pages/vice-chairman/vice-chairman.component";
+import { VicePrincipalComponent } from "./components/pages/vice-principal/vice-principal.component";
 // import { hefzkhanateacherComponent } from '/components/pages/hefzkhana-teacher/hefzkhana-teacher.component';import { OnlineAdmisssionPagesComponent } from './components/pages/online-admisssion-pages/online-admisssion-pages.component';
 
 const routes: Routes = [
@@ -157,6 +161,19 @@ const routes: Routes = [
   { path: "masters", component: TemplatePageComponent },
   { path: "ebtedayee", component: TemplatePageComponent },
   { path: "notice", component: NoticeComponent },
+  { path: "admission-prospectus", component: TemplatePageComponent },
+  { path: "online-admission", component: TemplatePageComponent },
+  { path: "classrooms", component: TemplatePageComponent },
+  { path: "sports-&-game", component: TemplatePageComponent },
+  { path: "hamd-competition", component: TemplatePageComponent },
+  { path: "admission-prospectus", component: TemplatePageComponent },
+  { path: "administration/governing-body", component: GoverningBodyComponent },
+  { path: "administration/message-of-chairman", component: ChairmanMessegeComponent },
+  { path: "administration/message-of-chairman", component: ChairmanMessegeComponent },
+  { path: "administration/message-of-vice-chairman", component: ViceChairmanComponent },
+  { path: "administration/message-of-principal", component: PrincipalMessagesComponent },
+  { path: "administration/message-of-vice-principal", component: VicePrincipalComponent},
+  { path: "administration/message-of-chief-patron", component: CheifPatronComponent },
 
   {
     path: "computer-lab",
@@ -202,13 +219,13 @@ const routes: Routes = [
     path: "essay-competition",
     component: TemplatePageComponent,
   },
-  {
-    path: "administration",
-    children: [
-      { path: "", component: AdministrationComponent },
-      { path: ":item", component: AdministrationComponent },
-    ],
-  },
+  // {
+  //   path: "administration",
+  //   children: [
+  //     { path: "", component: AdministrationComponent },
+  //     { path: ":item", component: AdministrationComponent },
+  //   ],
+  // },
   { path: "photo-gallery", component: ImageGalleryComponent },
   { path: "video-gallery", component: VideoGalleryComponent },
   {

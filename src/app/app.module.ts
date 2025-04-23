@@ -56,8 +56,8 @@ import { MissionAndVisionComponent } from './components/pages/mission-and-vision
 import { InfrastructureComponent } from './components/pages/infrastructure/infrastructure.component';
 import { AchievementComponent } from './components/pages/achievement/achievement.component';
 import { GoverningBodyComponent } from './components/pages/governing-body/governing-body.component';
-import { ChairmanMessageComponent } from './components/pages/chairman-message/chairman-message.component';
-import { PrincipalMessageComponent } from './components/pages/principal-message/principal-message.component';
+
+
 import { TeacherComponent } from './components/pages/teacher/teacher.component';
 import { OfficeStaffComponent } from './components/pages/office-staff/office-staff.component';
 import { AcademicCalendarComponent } from './components/pages/academic-calendar/academic-calendar.component';
@@ -100,7 +100,7 @@ import { VideoPageComponent } from './components/pages/video-page/video-page.com
 import { EPaymentSystemComponent } from './components/pages/e-payment/e-payment.component';
 import { ContactOComponent } from './components/pages/contact-o/contact-o.component';
 import { NgMarqueeModule } from 'ng-marquee';
-import { VicePrincipalMessageComponent } from './components/pages/vice-principal-message/vice-principal-message.component';
+
 import { MpoTeacherComponent } from './components/pages/mpo-teacher/mpo-teacher.component';
 import { NonMpoTeacherComponent } from './components/pages/non-mpo-teacher/non-mpo-teacher.component';
 import { MpoOfficeStaffComponent } from './components/pages/mpo-office-staff/mpo-office-staff.component';
@@ -126,6 +126,11 @@ import { VideoFolderComponent } from './components/pages/video-folder/video-fold
 import { SafePipe } from './utils/safe.pipe';
 import { NewAndEventsComponent } from './components/pages/new-and-events/new-and-events.component';
 import { NewAndEventsItemsComponent } from './components/pages/new-and-events-items/new-and-events-items.component';
+import { ChairmanMessegeComponent } from './components/pages/chairman-messege/chairman-messege.component';
+import { PrincipalMessagesComponent } from './components/pages/principal-messages/principal-messages.component';
+import { ViceChairmanComponent } from './components/pages/vice-chairman/vice-chairman.component';
+import { VicePrincipalComponent } from './components/pages/vice-principal/vice-principal.component';
+import { CheifPatronComponent } from './components/pages/cheif-patron/cheif-patron.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -174,9 +179,9 @@ import { NewAndEventsItemsComponent } from './components/pages/new-and-events-it
     InfrastructureComponent,
     AchievementComponent,
     GoverningBodyComponent,
-    ChairmanMessageComponent,
-    PrincipalMessageComponent,
-    VicePrincipalMessageComponent,
+   ChairmanMessegeComponent,
+   PrincipalMessagesComponent,
+  VicePrincipalComponent,
     TeacherComponent,
     MpoTeacherComponent,
     NonMpoTeacherComponent,
@@ -244,7 +249,11 @@ import { NewAndEventsItemsComponent } from './components/pages/new-and-events-it
     VideoFolderComponent,
     SafePipe,
     NewAndEventsComponent,
-    NewAndEventsItemsComponent
+    NewAndEventsItemsComponent,
+    PrincipalMessagesComponent,
+    ViceChairmanComponent,
+    VicePrincipalComponent,
+    CheifPatronComponent
   ],
   imports: [
     BrowserModule,
