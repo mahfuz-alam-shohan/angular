@@ -1,95 +1,86 @@
 <app-navbar-style-two-2></app-navbar-style-two-2>
-
-<section class="blog-details-area pb-100" style="
-background-image: url('assets/img/banner-image/bg.png');  
-/* background-size: cover; */
-
- /* background-repeat: repeat-y; */
-padding-top: 20px;
-font-family: 'Congenial';">
-    <div class="container" style="background: transparent;">
+<div class="page-title-area" style="height: 0px !important"></div>
+<section class="" style="padding: 20px 0px 40px 0px; font-family: 'Congenial'; background-image: url('assets/img/banner-image/bg.png'); background-repeat: no-repeat; background-position: center; background-size: cover;">
+    <div class="container" style="background: transparent">
         <div class="row justify-content-center align-items-center">
             <div class="col-lg-12 col-md-12">
                 <div class="container">
-                    <div class="row align-items-center text-center" style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px;">
+                    <div class="row align-items-center text-center" style="background-image: url('/assets/img/school/bg-popup.png'); background-size: 100px; padding: 20px; margin: 0;">
                         <h3 style="font-weight: normal;">Jamea Ahmadia Sunnia Kamil Madrasah - MPO Office Staff</h3>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-12 col-md-12">
-                <div class="blog-details-desc" style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px; border: 1px solid #eeeeee;" *ngFor="let item of dummyItems">
-                    <div class="container">
-                        <div class="row align-items-center">
-
-                            <div class="col-lg-5 col-md-12">
-                                <div class="about-image">
-                                    <img [src]="item.image" alt="image">
-                                </div>
-                            </div>
-                            <div class="col-lg-7 col-md-12">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6 col-md-12">
-
-                                        <div>
-                                            <span>Name: </span>
-
-                                        </div>        
-                                        <div>
-                                            <span>Designation: </span>
-
-                                        </div>
-                                        <div>
-                                            <span>Joining Date: </span>
-
-                                        </div>
-
-                                        <div>
-                                            <span>ID: </span>
-                                            
-                                        </div>
-                                        <div>
-                                            <span>Mobile No:</span>
-
-                                        </div>
-                                        <div>
-                                            <span>Email Address:</span>
-
-                                    </div>
-                                    </div>
-                                    <div class="col-lg-6 col-md-12">
-
-                                        <div>
-                                            <span>{{item.name}} </span>
-
-                                        </div>
-                                        <div>
-                                            <span>{{item.designation}} </span>
-
-                                        </div>
-                                        <div>
-                                            <span>{{item.joiningDate}} </span>
+                
+                <ng-container *ngIf="all_employee_data != null">
+                    <!-- Dynamic Ok -->
+                    <div class="bg-image">
+                        <div class="container" >
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div style="min-height: 800px">
+                                        <div *ngFor="let item of paginated_teachers_info" 
+                                             class="blog-details-desc" 
+                                             style="background-image: url('/assets/img/school/bg-popup.png'); background-size: 100px;border: 1px solid #eeeeee;">
+                                            <div class="container">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-5 col-md-12">
+                                                        <div class="about-image">
+                                                            <img [src]="item.ImageLink" alt="image" style="width: 100%; max-width: 200px; padding: 20px;">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-7 col-md-12">
+                                                        <div class="row align-items-center">
+                                                            <div class="col-lg-6 col-md-12">
+                                                                <div><span>Name: </span></div>
+                                                                <div><span>Designation: </span></div>
+                                                                <div><span>Joining Date: </span></div>
+                                                                <div><span>ID: </span></div>
+                                                                <div><span>Mobile No:</span></div>
+                                                                <div><span>Email Address:</span></div>
+                                                            </div>
+                                                            <div class="col-lg-6 col-md-12">
+                                                                <div><span>{{item.EmployeeName}}</span></div>
+                                                                <div><span>{{item.Designation}}</span></div>
+                                                                <div><span>{{item.JoiningDate | date: "yyyy-MM-dd"}}</span></div>
+                                                                <div><span>{{item.EmployeeId}}</span></div>
+                                                                <div><span>{{item.MobileNo || 'N/A'}}</span></div>
+                                                                <div><span>{{item.Email || 'N/A'}}</span></div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
 
-                                        <div>
-                                            <span>{{item.id}} </span>
+                                        <div class="pagination">
+                                            <button (click)="onPageChange(pageIndex - 1)" [disabled]="pageIndex === 0">
+                                                Previous
+                                            </button>
+
+                                            <button *ngFor="let page of totalPages; let i = index" 
+                                                    (click)="onPageChange(i)" 
+                                                    [class.active]="pageIndex === i">
+                                                {{ page }}
+                                            </button>
+
+                                            <button (click)="onPageChange(pageIndex + 1)" 
+                                                    [disabled]="pageIndex + 1 >= totalPages.length">
+                                                Next
+                                            </button>
                                         </div>
-                                        <div>
-                                            <span>{{item.MobileNo}} </span>
-                                        </div>
-                                        <div>
-                                            <span>{{item.EmailAddress}} </span>
+
+                                        <div *ngIf="all_teachers_info == null">
+                                            <div class="page-title-content" style="margin-top: 100px; margin-bottom: 100px;">
+                                                <h2>No Data Found</h2>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                </div>
+                    <!-- Dynamic Ends -->
+                </ng-container>
             </div>
         </div>
-
     </div>
 </section>

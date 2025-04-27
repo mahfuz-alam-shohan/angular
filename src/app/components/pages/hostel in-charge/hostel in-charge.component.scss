@@ -1,8 +1,24 @@
-.sect1 {
-    // height: 1050 px;
-    color: #fff;
-    background-image: url('../../../../assets/img/banner-image/footer_bg.jpg');
-    /* background-size: cover; */
-    /* background-size: cover; */
-  }
-  
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 10px 15px;
+  border: none;
+  background-color: #f1f1f1;
+  cursor: pointer;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: white;
+}
+
+.pagination button[disabled] {
+  background-color: #dddddd;
+  cursor: not-allowed;
+}

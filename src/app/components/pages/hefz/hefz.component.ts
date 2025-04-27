@@ -1,43 +1,94 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeTranslationLoaderService } from 'src/services/home-translation-loader.service';
-import { arabic, bangla, english } from 'src/services/locale';
+import { AppService } from "src/app/app.service";
+
 
 @Component({
   selector: 'hefz',
   templateUrl: './hefz.component.html',
   styleUrls: ['./hefz.component.scss']
 })
-export class HefzComponent implements OnInit
-{
+export class HefzComponent implements OnInit {
+  selectedLanguage = "";
+  firstPageItems = [];
+  paginatedItems = [];
+  //   page: number = 1;
+  font = "";
+  foundnews: any;
+  ContentData: any[] = [];
+  all_employee_data: any[] = [];
+  all_teachers_info: any[] = [];
+  paginated_teachers_info: any[] = [];
+  length = 0;
+  pageSize = 15;
+  pageIndex = 0;
+  totalPages: number[] = [];
 
-  selectedLanguage = '';
+  constructor(private appService: AppService) {}
 
-  font = '';
-
-  constructor(
-    private _homeTranslationLoaderService: HomeTranslationLoaderService,
-
-  )
-  {
-    this._homeTranslationLoaderService.loadTranslations(english, bangla, arabic);
+  ngOnInit(): void {
+      this.FetchData();
   }
 
-  ngOnInit(): void
-  {
-    this.selectedLanguage = localStorage.getItem('selectedLanguage');
+  FetchData() {
+    this.appService.getTeaherStaff().subscribe((response: any) => {
+      console.log(response, "response FetchData");
+  
+      this.ContentData = response.data;
+      console.log(this.ContentData, "Default Content Data");
+  
+      if (this.ContentData != null) {
+        let employee_data = this.ContentData.filter(
+          (x) => x.Department == "Hefz Teacher"
+        );
+        this.all_employee_data = employee_data;
+        console.log(this.all_employee_data, "All Employee Data");
+      }
+  
+      if (this.ContentData != null) {
+        let all_teachers_data = this.ContentData.filter(
+          (x) => x.Department == "Hefz Teacher"
+        );
+        this.all_teachers_info = all_teachers_data;  // <-- NO REVERSE
+        console.log(this.all_teachers_info, "All teachers info");
+  
+        this.length = this.all_teachers_info.length;
+        this.generatePageNumbers();
+        this.paginateData();
+      }
+    });
+  }
+  
+
+  onPageChange(pageIndex: number) {
+      this.pageIndex = pageIndex;
+      this.paginateData();
   }
 
-  GetFontName()
-  {
-    switch (this.selectedLanguage)
-    {
-      case 'en':
-        return 'Congenial';
-      case 'bn':
-        return 'HindSiliguri';
-      case 'ar':
-        return 'Jameel Noori Nastaleeq';
-    }
+  paginateData() {
+      const startIndex = this.pageIndex * this.pageSize;
+      const endIndex = startIndex + this.pageSize;
+      this.paginated_teachers_info = this.all_teachers_info.slice(
+          startIndex,
+          endIndex
+      );
   }
 
+  generatePageNumbers() {
+      const totalPageCount = Math.ceil(this.length / this.pageSize);
+      this.totalPages = Array.from(
+          { length: totalPageCount },
+          (_, i) => i + 1
+      );
+  }
+
+  GetFontName() {
+      switch (this.selectedLanguage) {
+          case "en":
+              return "Congenial";
+          case "bn":
+              return "Kalpurush";
+          case "ar":
+              return "Jameel Noori Nastaleeq";
+      }
+  }
 }

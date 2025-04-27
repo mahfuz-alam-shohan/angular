@@ -2,9 +2,9 @@ import { Component, OnInit } from "@angular/core";
 import { AppService } from "src/app/app.service";
 
 @Component({
-  selector: 'hostel in-charge',
-  templateUrl: './hostel in-charge.component.html',
-  styleUrls: ['./hostel in-charge.component.scss']
+  selector: 'app-hostel-in-charge',
+  templateUrl: './hostel-in-charge.component.html',
+  styleUrls: ['./hostel-in-charge.component.scss']
 })
 export class HostelInChargeComponent implements OnInit {
   selectedLanguage = "";
@@ -37,7 +37,7 @@ export class HostelInChargeComponent implements OnInit {
 
           if (this.ContentData != null) {
               let employee_data = this.ContentData.filter(
-                  (x) => x.Department == "Hostel In-Charge"
+               (x) => x.Department == "Hostel In-Charge"
               );
               this.all_employee_data = employee_data;
               console.log(this.all_employee_data, "All Employee Data");
@@ -45,7 +45,7 @@ export class HostelInChargeComponent implements OnInit {
 
           if (this.ContentData != null) {
               let all_teachers_data = this.ContentData.filter(
-                  (x) => x.Department == "Hostel In-Charge"
+                   (x) => x.Department == "Hostel In-Charge"
               );
               this.all_teachers_info = all_teachers_data;
               console.log(this.all_teachers_info, "All teachers info");

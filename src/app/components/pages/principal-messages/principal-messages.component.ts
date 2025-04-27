@@ -30,7 +30,7 @@ export class PrincipalMessagesComponent  {
               let targetArray = null;
 
               for (let i = 0; i < this.GBMessages.length; i++) {
-                  if (this.GBMessages[i].GBDesignationName === "Chairman") {
+                  if (this.GBMessages[i].GBDesignationName === "Principal") {
                       targetArray = this.GBMessages[i];
                       break;
                   }
