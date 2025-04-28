@@ -161,187 +161,83 @@
         </div>
         <!-- Notice -->
         <section
-          class="widget widget_karlson_posts_thumb"
-          style="
-            background-image: url('/assets/img/school/bg-popup.png');
-            background-size: 100px;
-            padding: 20px;
-            margin-top: 10px;
-            border: 1px solid #eeeeee;
-          "
-        >
-          <h3 class="widget-title">Notices</h3>
+  class="widget widget_karlson_posts_thumb"
+  style="background-image: url('/assets/img/school/bg-popup.png'); background-size: 100px; padding: 20px; margin-top: 10px; border: 1px solid #eeeeee;"
+>
+  <h3 class="widget-title">Notices</h3>
+  <article class="item">
+    <div class="tab-container">
+      <!-- Notice Header with Dropdown and Tabs -->
+      <!-- Tabs for Filtering Notices -->
+      <ul class="nav nav-pills" id="myTab" role="tablist" style="margin-bottom: 20px;">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active tabsButton"
+            id="tab-1"
+            data-bs-toggle="tab"
+            data-bs-target="#content-1"
+            type="button"
+            role="tab"
+            aria-controls="content-1"
+            aria-selected="true"
+            (click)="onSelectCategory('All Notices')"
+          >
+            All
+          </button>
+        </li>
+        <ng-container *ngFor="let item of notice_cat_values">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link tabsButton"
+              [class.active]="selectedCategory === item"
+              (click)="onSelectCategory(item)"
+            >
+              {{ item }}
+            </button>
+          </li>
+        </ng-container>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="myTabContent" style="font-family: 'Congenial'">
+        <div class="tab-pane fade show active" id="content-1" role="tabpanel">
           <article class="item">
-            <div class="tab-container">
-              <ul
-                class="nav nav-pills"
-                id="myTab"
-                role="tablist"
-                style="margin-bottom: 20px"
-              >
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link active tabsButton"
-                    id="tab-1"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-1"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-1"
-                    aria-selected="true"
-                  >
-                    All
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link tabsButton"
-                    id="tab-2"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-2"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-2"
-                    aria-selected="false"
-                  >
-                    Ebtedayee
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link tabsButton"
-                    id="tab-3"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-3"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-3"
-                    aria-selected="false"
-                  >
-                    Dakhil
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link tabsButton"
-                    id="tab-4"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-4"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-4"
-                    aria-selected="false"
-                  >
-                    Kamil
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link tabsButton"
-                    id="tab-5"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-5"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-5"
-                    aria-selected="false"
-                  >
-                    Fazil
-                  </button>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <button
-                    class="nav-link tabsButton"
-                    id="tab-6"
-                    data-bs-toggle="tab"
-                    data-bs-target="#content-6"
-                    type="button"
-                    role="tab"
-                    aria-controls="content-6"
-                    aria-selected="false"
-                  >
-                    Alim
-                  </button>
+            <div class="ticker-wrapper-v-image" style="font-family: 'Congenial'">
+              <ul class="news-ticker-v-image" *ngIf="filteredNotices && filteredNotices.length != 0">
+                <li *ngFor="let data of filteredNotices" style="border: 1px solid #eeeeee; padding: 10px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; align-items: center;">
+                      <div style="border: 1px solid #eeeeee; width: 80px; margin-right: 15px;">
+                        <div style="background-color: #100278" class="text-center">
+                          <span style="text-align: center; color: white">{{ data.CreatedDate | date : "dd" }}</span>
+                        </div>
+                        <div style="background-color: #fefeb4" class="text-center">
+                          <span style="text-align: center; color: #fc9c79">{{ data.CreatedDate | date : "MM" }}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                          <a class="notice-link" [href]="data.FileLink" target="_blank" style="text-decoration: none; color: inherit;">
+                            {{ data.EnglishTitle }}
+                          </a>
+                        </div>                       
+                      </div>
+                    </div>
+                  </div>
                 </li>
               </ul>
-              <div
-                class="tab-content"
-                id="myTabContent"
-                style="font-family: 'Congenial'"
-              >
-                <div
-                  class="tab-pane fade show active"
-                  id="content-1"
-                  role="tabpanel"
-                  aria-labelledby="সকল"
-                >
-                  <article class="item">
-                    <div
-                      class="ticker-wrapper-v-image"
-                      style="font-family: 'Congenial'"
-                    >
-                      <ul
-                        class="news-ticker-v-image"
-                        *ngIf="Notices.length != 0 && !loadingData"
-                      >
-                        <li
-                          *ngFor="let item of Notices"
-                          style="border: 1px solid #eeeeee; padding: 10px"
-                        >
-                          <div class="thumbnail">
-                            <div style="border: 1px solid #eeeeee; width: 80px">
-                              <div
-                                style="background-color: #100278"
-                                class="text-center"
-                              >
-                                <span
-                                  style="text-align: center; color: white"
-                                  >{{ item.CreatedDate | date : "dd" }}</span
-                                >
-                              </div>
-                              <div
-                                style="background-color: #fefeb4"
-                                class="text-center"
-                              >
-                                <span
-                                  style="text-align: center; color: #fc9c79"
-                                  >{{ item.CreatedDate | date : "MM" }}</span
-                                >
-                              </div>
-                            </div>
-                          </div>
-                          <div>
-                            <div
-                              style="
-                                white-space: nowrap;
-                                overflow: hidden;
-                                text-overflow: ellipsis;
-                              "
-                            >
-                              {{ item.EnglishTitle }}
-                            </div>
-                            <div style="overflow: auto">
-                              <a
-                                (click)="onNavigate(item.FileLink)"
-                                target="_blank"
-                                style="text-decoration: unset; color: #026670"
-                                >See Notice</a
-                              >
-                            </div>
-                          </div>
-                          <div class="clear"></div>
-                        </li>
-                      </ul>
-                    </div>
-                  </article>
-                </div>
-              </div>
-            </div>
-            <div class="text-end" style="padding-top: 5px">
-              <a routerLink="/notice">View All</a>
+           
             </div>
           </article>
-        </section>
+        </div>
+      </div>
+    </div>
+    <div class="text-end" style="padding-top: 5px">
+      <a routerLink="/notice">View All</a>
+    </div>
+  </article>
+</section>
+
         <!-- News Event And Achievements -->
         <div class="blog-details-desc" style="background: transparent">
           <div class="row">
@@ -654,10 +550,14 @@
             </h3>
 
             <article class="item">
-              <a routerLink="#" class="thumb">
-                  <span class="fullimage cover" role="img">
-                    <img [src]="this.GBMessageShown[0].GBImagePath" alt="" />
-                  </span>
+              <<a routerLink="#" class="thumb">
+                <span class="fullimage cover" role="img">
+                  <img 
+                    *ngIf="GBMessageShown && GBMessageShown.length > 0 && GBMessageShown[0].GBImagePath"
+                    [src]="GBMessageShown[0].GBImagePath"
+                    alt=""
+                  />
+                </span>
               </a>
               <div class="info">
                 <h5>
@@ -692,12 +592,12 @@
             <article class="item">
               <a routerLink="#" class="thumb">
                 <span class="fullimage cover" role="img">
-                    <img
-                      [src]="this.GBMessageShown[1].GBImagePath"
-                      alt=""
-                      srcset=""
-                    />
-                </span>
+                  <img
+                    *ngIf="GBMessageShown && GBMessageShown.length > 1"
+                    [src]="GBMessageShown[1].GBImagePath"
+                    alt=""
+                  />
+                </span>>
               </a>
               <div class="info">
                 <h5>
