@@ -536,44 +536,40 @@
           </section>
           <!-- Chairman Section -->
           <section
-            class="widget widget_karlson_posts_thumb"
-            style="
-              background-image: url('/assets/img/school/bg-popup.png');
-              background-size: 100px;
-              padding: 20px;
-              margin-top: 10px;
-              border: 1px solid #eeeeee;
-            "
-          >
-            <h3 class="widget-title" style="font-family: 'Congenial'">
-              Chairman's Message
-            </h3>
+  class="widget widget_karlson_posts_thumb"
+  style="
+    background-image: url('/assets/img/school/bg-popup.png');
+    background-size: 100px;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #eeeeee;
+  "
+>
+  <h3 class="widget-title" style="font-family: 'Congenial'">
+    Chairman's Message
+  </h3>
 
-            <article class="item">
-              <<a routerLink="#" class="thumb">
-                <span class="fullimage cover" role="img">
-                  <img 
-                    *ngIf="GBMessageShown && GBMessageShown.length > 0 && GBMessageShown[0].GBImagePath"
-                    [src]="GBMessageShown[0].GBImagePath"
-                    alt=""
-                  />
-                </span>
-              </a>
-              <div class="info">
-                <h5>
-                  <a routerLink="/chairman-message"
-                    >Alhaj Abul Mohsin Md. Yeahia Khan</a
-                  >
-                </h5>
-                <h6>
-                  <a routerLink="administration/message-of-chairman"
-                    >Chairman's Message</a
-                  >
-                </h6>
-              </div>
-              <div class="clear"></div>
-            </article>
-          </section>
+  <article class="item">
+    <a routerLink="/chairman-message" class="thumb">
+      <span class="fullimage cover" role="img">
+        <img 
+          *ngIf="GBMessageShown && GBMessageShown.length > 0 && GBMessageShown[0].GBImagePath"
+          [src]="GBMessageShown[0].GBImagePath"
+          alt="Chairman's Photo"
+        />
+      </span>
+    </a>
+    <div class="info">
+      <h5>
+        <a routerLink="/chairman-message">Alhaj Abul Mohsin Md. Yeahia Khan</a>
+      </h5>
+      <h6>
+        <a routerLink="/administration/message-of-chairman">Chairman's Message</a>
+      </h6>
+    </div>
+    <div class="clear"></div>
+  </article>
+</section>
           <!-- Principal Section -->
           <section
             class="widget widget_karlson_posts_thumb"

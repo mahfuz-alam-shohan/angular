@@ -1,7 +1,3 @@
-// import { Component, HostListener, OnInit } from '@angular/core';
-// import { TranslateService } from '@ngx-translate/core';
-// import { HomeTranslationLoaderService } from 'src/services/home-translation-loader.service';
-// import { arabic, bangla, english } from 'src/services/locale';
 import {
   Component,
   EventEmitter,
@@ -14,7 +10,6 @@ import { Observable, Subject, Subscription, forkJoin, interval } from "rxjs";
 import { map, takeUntil } from "rxjs/operators";
 import { EmitterService } from "src/app/EmitterService";
 import { AppService } from "src/app/app.service";
-import * as _ from 'lodash';
 
 @Component({
   selector: "app-navbar-style-two-2",
@@ -42,6 +37,8 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
   @Output() parametersReady = new EventEmitter<any>();
   AllmenuItems: any[];
+  client_basis: any;
+  onl_button: any;
 
   constructor(
     private appService: AppService,
@@ -72,7 +69,6 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
   }
 
   FetchMainData() {
-    // debugger;
     forkJoin([this.appService.getClientBasics(), this.appService.getNotices()])
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe(
@@ -80,40 +76,42 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
           console.log(response, "response FetchMainData");
 
           this.mainData = response[0].data;
+          this.client_basis = response[0].data.LocalOptions;
+          console.log(this.client_basis, "Home Basis");
 
           this.sortedNotice = this.sortByStartDate(response[1].data);
-          if (this.sortedNotice != null) {
-            let scrollFiltered = this.sortedNotice.filter(
-              (x) => x.ShowScroll === true
+          console.log(this.sortedNotice, "Sorted Notices");
+          
+          // Online Admission Button
+          if (this.client_basis != null) {
+            let abc_button = this.client_basis.filter(
+              (x) => x.DisplayName === "Online Admission"
             );
-
-            this.Notices = scrollFiltered.sort((a, b) => b.Id - a.Id);
-
-            // localStorage.setItem('noticeData', JSON.stringify(this.Notices));
+            this.onl_button = abc_button[0];
+            console.log(this.onl_button, "Button Data");
           }
 
-          // Starts all menu
+          if (this.sortedNotice != null) {
+            let scrollFiltered = this.sortedNotice.filter(
+              (x) => x.ShowScroll === true && x.IsActive === true
+            );
+            this.Notices = scrollFiltered.sort((a, b) => b.Id - a.Id);
+          }
+
+          // Menu items processing
           if (this.mainData != null) {
             let siteMapSorted = [];
-            // except welcome
-            let newArraay = [];
+            // Filter out unwanted menu items (welcome, etc.)
+            let newArraay = this.mainData.SiteMapList.filter(
+              (item) => item.MenuCode != 187 && item.MenuCode != 216 && item.MenuCode != 217
+            ).map(item => ({
+              ...item,
+              Items: []
+            }));
 
-            this.mainData.SiteMapList.forEach((item) => {
-              if (
-                item.MenuCode != 187 &&
-                item.MenuCode != 216 &&
-                item.MenuCode != 217
-              ) {
-                newArraay.push({
-                  ...item,
-                  Items: [],
-                });
-              }
-            });
-            0;
-            // except welcome ends
+            console.log(newArraay, "All menu except Welcome");
 
-            // Initialize parent items with ParentId === 0
+            // Initialize parent items with ParentId === 0 and sort by MenuOrder
             newArraay.forEach((item) => {
               if (item.ParentId === 0) {
                 siteMapSorted.push({
@@ -122,6 +120,9 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
                 });
               }
             });
+
+            // Sort the parent items by MenuOrder in ascending order
+            siteMapSorted.sort((a, b) => a.MenuOrder - b.MenuOrder);
 
             // Nest the child items under their respective parents
             newArraay.forEach((item) => {
@@ -143,27 +144,30 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
               }
             });
 
-            // Sort the parent items to ensure any placeholder parent items are positioned correctly
-            siteMapSorted.sort((a, b) => a.Id - b.Id);
+            // Sort the child items of each parent by MenuOrder
+            siteMapSorted.forEach((parent) => {
+              if (parent.Items.length > 0) {
+                parent.Items.sort((a, b) => a.MenuOrder - b.MenuOrder);
+              }
+            });
 
             this.AllmenuItems = siteMapSorted;
-            // console.log(this.AllmenuItems, "Menu Items");
+            console.log(this.AllmenuItems, "Menu Items");
 
+            // Split menu items into two arrays for display
             const middleIndex = Math.ceil(siteMapSorted.length / 2);
-
             this.array1 = siteMapSorted.slice(0, middleIndex);
             this.array2 = siteMapSorted.slice(middleIndex);
 
             localStorage.setItem("mainData", JSON.stringify(this.mainData));
           }
+
           if (this.sortedNotice != null && this.mainData != null) {
             this.loadingData = false;
             this.emitterService.changeMessage(true);
-            // this.parametersReady.emit(true);
           }
         },
         (error) => {
-          // Handle errors
           console.error("Error:", error);
         }
       );
