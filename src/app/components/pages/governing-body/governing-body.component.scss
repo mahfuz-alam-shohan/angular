@@ -1,0 +1,96 @@
+/* Fixed Height Cards Styling */
+.fixed-height-cards-container {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+ }
+ 
+ .fixed-height-card {
+     height: 315px; /* Fixed height for all cards */
+     display: flex;
+     flex-direction: column;
+     background-image: url('/assets/img/school/bg-popup.png');
+     background-size: 100px;
+     border-radius: 10px;
+     overflow: hidden;
+     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+     margin-bottom: 20px;
+     transition: none; /* Remove transition for hover */
+ }
+ 
+ /* Removed hover effect */
+ .fixed-height-card:hover {
+     transform: none;
+ }
+ 
+ .fixed-height-card .image {
+     flex: 1;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     padding: 20px;
+     background-color: rgba(255,255,255,0.1);
+ }
+ 
+ .fixed-height-img {
+     padding: 30px 25px;
+     max-height: 220px;
+     width: 190px;
+     object-fit: cover;
+ }
+ 
+ .fixed-height-card .content {
+     padding: 15px;
+     text-align: center;
+     color: #fff;
+     /* background-color: rgba(0,0,0,0.5); */
+ }
+ 
+ .fixed-height-card h3 {
+     font-size: 1.2rem;
+     margin-bottom: 5px;
+ }
+ 
+ .fixed-height-card span {
+     display: block;
+     font-size: 0.9rem;
+     margin-bottom: 3px;
+ }
+ 
+ /* Responsive Adjustments */
+ @media (max-width: 768px) {
+     .fixed-height-card {
+         height: 300px;
+     }
+ 
+     .fixed-height-img {
+          padding: 30px 25px;
+          max-height: 220px;
+          width: 190px;
+          object-fit: cover;
+     }
+      
+ }
+ 
+ @media (max-width: 576px) {
+     .fixed-height-card {
+         height: 300px;
+     }
+ 
+     .fixed-height-card h3 {
+         font-size: 1rem;
+     }
+ 
+     .fixed-height-card span {
+         font-size: 0.8rem;
+     }
+     .fixed-height-img {
+          padding: 30px 25px;
+          max-height: 220px;
+          width: 190px;
+          object-fit: cover;
+     }
+      
+     
+ }
+ 
