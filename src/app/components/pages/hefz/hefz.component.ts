@@ -29,35 +29,35 @@ export class HefzComponent implements OnInit {
       this.FetchData();
   }
 
-  FetchData() {
-    this.appService.getTeaherStaff().subscribe((response: any) => {
-      console.log(response, "response FetchData");
-  
-      this.ContentData = response.data;
-      console.log(this.ContentData, "Default Content Data");
-  
-      if (this.ContentData != null) {
-        let employee_data = this.ContentData.filter(
-          (x) => x.Department == "Hefz Teacher"
-        );
-        this.all_employee_data = employee_data;
-        console.log(this.all_employee_data, "All Employee Data");
-      }
-  
-      if (this.ContentData != null) {
-        let all_teachers_data = this.ContentData.filter(
-          (x) => x.Department == "Hefz Teacher"
-        );
-        this.all_teachers_info = all_teachers_data;  // <-- NO REVERSE
-        console.log(this.all_teachers_info, "All teachers info");
-  
-        this.length = this.all_teachers_info.length;
-        this.generatePageNumbers();
-        this.paginateData();
-      }
-    });
-  }
-  
+ FetchData() {
+  this.appService.getTeaherStaff().subscribe((response: any) => {
+    console.log(response, "response FetchData");
+
+    this.ContentData = response.data;
+    console.log(this.ContentData, "Default Content Data");
+
+    if (this.ContentData != null) {
+      let employee_data = this.ContentData.filter(
+        (x) => x.Department == "Hefz Teacher" && x.IsActive === true
+      );
+      this.all_employee_data = employee_data;
+      console.log(this.all_employee_data, "All Active Employee Data");
+    }
+
+    if (this.ContentData != null) {
+      let all_teachers_data = this.ContentData.filter(
+        (x) => x.Department == "Hefz Teacher" && x.IsActive === true
+      );
+      this.all_teachers_info = all_teachers_data;  // <-- Active only
+      console.log(this.all_teachers_info, "All Active Teachers Info");
+
+      this.length = this.all_teachers_info.length;
+      this.generatePageNumbers();
+      this.paginateData();
+    }
+  });
+}
+
 
   onPageChange(pageIndex: number) {
       this.pageIndex = pageIndex;
