@@ -22,33 +22,38 @@ padding-top: 20px; font-family: 'Congenial';">
                                              class="blog-details-desc" 
                                              style="background-image: url('/assets/img/school/bg-popup.png'); background-size: 100px;border: 1px solid #eeeeee;">
                                             <div class="container">
-                                                <div class="row align-items-center">
-                                                    <div class="col-lg-5 col-md-12">
-                                                        <div class="about-image">
-                                                            <img [src]="item.ImageLink" alt="image" style="width: 100%; max-width: 200px; padding: 20px;">
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-lg-7 col-md-12">
-                                                        <div class="row align-items-center">
-                                                            <div class="col-lg-6 col-md-12">
-                                                                <div><span>Name: </span></div>
-                                                                <div><span>Designation: </span></div>
-                                                                <div><span>Joining Date: </span></div>
-                                                                <div><span>ID: </span></div>
-                                                                <div><span>Mobile No:</span></div>
-                                                                <div><span>Email Address:</span></div>
-                                                            </div>
-                                                            <div class="col-lg-6 col-md-12">
-                                                                <div><span>{{item.EmployeeName}}</span></div>
-                                                                <div><span>{{item.Designation}}</span></div>
-                                                                <div><span>{{item.JoiningDate | date: "yyyy-MM-dd"}}</span></div>
-                                                                <div><span>{{item.EmployeeId}}</span></div>
-                                                                <div><span>{{item.MobileNo || 'N/A'}}</span></div>
-                                                                <div><span>{{item.Email || 'N/A'}}</span></div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+<div class="row align-items-center">
+  <div class="col-lg-5 col-md-12">
+    <div class="about-image text-center">
+      <img [src]="item.ImageLink" alt="image" style="width: 100%; max-width: 200px; padding: 20px;">
+    </div>
+  </div>
+
+  <div class="col-lg-7 col-md-12">
+    <div class="row">
+      <!-- Labels Column -->
+      <div class="col-sm-6 col-6">
+        <div><strong>Name:</strong></div>
+        <div><strong>Designation:</strong></div>
+        <div><strong>Joining Date:</strong></div>
+        <div><strong>ID:</strong></div>
+        <div><strong>Mobile No:</strong></div>
+        <div><strong>Email Address:</strong></div>
+      </div>
+
+      <!-- Values Column -->
+      <div class="col-sm-6 col-6">
+        <div>{{ item.EmployeeName }}</div>
+        <div>{{ item.Designation }}</div>
+        <div>{{ item.JoiningDate | date: 'yyyy-MM-dd' }}</div>
+        <div>{{ item.EmployeeId }}</div>
+        <div>{{ item.MobileNo || 'N/A' }}</div>
+        <div>{{ item.Email || 'N/A' }}</div>
+      </div>
+    </div>
+  </div>
+</div>
+
                                             </div>
                                         </div>
 
