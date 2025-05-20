@@ -148,9 +148,17 @@ export class HomeDemoTen2Component implements OnInit {
 
       // debugger;
       // To get Notice Data
-      this.Notices = response[0].data.filter((x) => x.ShowScroll === true);
+      this.Notices = response[0].data.filter((x) => x.IsActive === true);
 
       this.Notices.sort((a, b) => b.Id - a.Id);
+      
+    // Step 2: Sort by Id descending
+    this.Notices.sort((a, b) => b.Id - a.Id);
+
+    // ✅ Step 3: Initially assign filteredNotices
+    this.filteredNotices = [...this.Notices];  // Make sure filteredNotices is same as Notices
+
+    this.loadingData = false;
 
       this.ContentData = response[1].data;
       this.initializeAchievementData();

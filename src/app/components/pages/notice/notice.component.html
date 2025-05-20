@@ -1,167 +1,6 @@
 <app-navbar-style-two-2></app-navbar-style-two-2>
 
-<!-- <section class="blog-details-area pb-100" style="
-background-image: url('assets/img/banner-image/bg.png');  
-/* background-size: cover; */
 
-padding-top: 20px;
-font-family: 'Congenial';">
-    <div class="container" style="background: transparent;">
-        <div class="row">
-            <div class="col-lg-8 col-md-12">
-                <div class="blog-details-desc"
-                    style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px; border: 1px solid #eeeeee;">
-                    <div class="article-image">
-                        <h2 style="font-weight: normal;">
-                            Notice
-                        </h2>
-                    </div>
-                    <div class="article-content">
-                    
-                        <div class="container">
-                            <div class="row">
-                    
-                    
-                                <article class="item">
-                                    <div class="ticker-wrapper-v-image">
-                                        <ul class="news-ticker-v-image">
-                                            <li *ngFor="let notice of dynamicTape" (click)="showNotice($event, notice)"
-                                                style="border: 1px solid #eeeeee; padding: 10px">
-                                                <div class="thumbnail">
-                                                    <div style="border: 1px solid #eeeeee; width: 80px">
-                                                        <div style="background-color: #082c5c" class="text-center">
-                                                            <span style="text-align: center; color: #ffffff">{{
-                                                                notice.Date.getDate()
-                                                                }}</span>
-                                                        </div>
-                                                        <div style="background-color: #f2f2f2" class="text-center">
-                                                            <span style="text-align: center; color: #caa545">{{
-                                                                notice.Date.toLocaleString('default', { month: 'short'
-                                                                })
-                                                                }}</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div>
-                                                    <div style="
-                                                            white-space: nowrap;
-                                                            overflow: hidden;
-                                                            text-overflow: ellipsis;
-                                                          ">
-                                                        {{ notice.Text }}
-                                                    </div>
-                                                </div>
-                                                <div class="clear"></div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </article>
-                    
-                    
-                    
-                    
-                                <div style='margin-bottom: 70px;'>
-                     
-                                    <div *ngIf="selectedNotice; else noNotice">
-                                        <div class="notice-title">{{ selectedNotice.Text }}</div>
-                                        <div class="notice-details">
-                                            <div class="notice-content">
-                                              
-                                                <div *ngIf="isImage(selectedNotice.Link)" class='viewport'>
-                                                    <img [src]="'assets/img/school/notice/' + selectedNotice.Link" alt="Notice" />
-                                                </div>
-                                                <div *ngIf="!isImage(selectedNotice.Link)">
-                                                   
-                                                    <iframe *ngIf="pdfUrl" [src]="pdfUrl" width="100%" height="500px" frameborder="0"
-                                                        style="border: none; overflow: hidden;"></iframe>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <ng-template #noNotice>
-                                        <div class="notice-title">Please select a notice to view</div>
-                                    </ng-template>
-                             
-                                </div>
-                            </div>
-                        </div>
-                    
-                    </div>
-
-
-                </div>
-            </div>
-
-            <div class="col-lg-4 col-md-12">
-                <aside class="widget-area" id="secondary">
-
-                    <section class="widget widget_karlson_posts_thumb"
-                        style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px; padding-top: 0; border: 1px solid #eeeeee;">
-
-                        <div class="page-title-content" style="margin-top: 0; text-align: left;">
-                            <ul>
-                                <li>
-                                    <a routerLink="/">
-                                        <i class="fa-solid fa-house"></i>
-                                    </a>
-                                </li>
-                                <li>Academic</li>
-                                <li>Notice</li>
-                            </ul>
-                        </div>
-
-                    </section>
-
-                    <section class="widget widget_karlson_posts_thumb"
-                        style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
-                        <h3 class="widget-title">Suggested Video</h3>
-
-                        <iframe width="100%" height="200" src="https://www.youtube.com/embed/MAz9kRnvSYE"
-                            frameborder="0"
-                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen=""></iframe>
-
-                    </section>
-
-                    <section class="widget widget_categories"
-                        style="background-image: url('/assets/img/school/bg-popup.png');
-          background-size: 100px;padding: 20px; border: 1px solid #eeeeee; margin-top: 15px;">
-                        <h3 class="widget-title">Related Topics</h3>
-
-                        <ul>
-                            <li>
-                                <a routerLink="/academic-calendar">Academic Calendar</a>
-                            </li>
-                            <li>
-                                <a routerLink="/class-routine">Class Routine</a>
-                            </li>
-                            <li>
-                                <a routerLink="/syllabus-and-booklist">Syllabus & Booklist</a>
-                            </li>
-                            <li>
-                                <a routerLink="/notice">Notice</a>
-                            </li>
-                            <li>
-                                <a routerLink="/public-exam-result">Public Exam Result</a>
-                            </li>
-                            <li>
-                                <a routerLink="/departments">Departments</a>
-                            </li>
-                            <li>
-                                <a routerLink="/academic-rules">Academic Rules</a>
-                            </li>
-                        </ul>
-
-                    </section>
-
-                </aside>
-            </div>
-        </div>
-    </div>
-</section> -->
 
 <section class="blog-details-area pb-100" style="
 background-image: url('assets/img/school/notice-page-img/notice-page-background.jpg');  
@@ -171,69 +10,66 @@ padding-top: 20px;
 font-family: 'HindSiliguri';">
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <article class="item">
-                    <div class="ticker-wrapper-v-image" style="background-image: url('assets/img/school/navbar-img.png');">
-                        <ul class="news-ticker-v-image">
-                            <li *ngFor="let notice of dynamicTape" (click)="showNotice($event, notice)"
-                                style="border: 1px solid #eeeeee; padding: 10px">
-                                <div class="thumbnail">
-                                    <div style="border: 1px solid #eeeeee; width: 80px">
-                                        <div style="background-color: #082c5c" class="text-center">
-                                            <span style="text-align: center; color: #ffffff">{{
-                                                notice.Date.getDate()
-                                                }}</span>
-                                        </div>
-                                        <div style="background-color: #f2f2f2" class="text-center">
-                                            <span style="text-align: center; color: #caa545">{{
-                                                notice.Date.toLocaleString('default', { month: 'short'
-                                                })
-                                                }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <div style="
-                                                    white-space: nowrap;
-                                                    overflow: hidden;
-                                                    text-overflow: ellipsis;                                                    
-                                                  ">
-                                        {{ notice.Text }}
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </li>
-                        </ul>
-                    </div>
-                </article>
-            </div>
-
-            <div class="col-md-8">
-
-                <div style='margin-bottom: 70px;'>
-
-                    <div *ngIf="selectedNotice; else noNotice">
-                        <div class="notice-title">{{ selectedNotice.Text }}</div>
-                        <div class="notice-details">
-                            <div class="notice-content">
-
-                                <div *ngIf="isImage(selectedNotice.Link)" class='viewport'>
-                                    <img [src]="'assets/img/school/notice/' + selectedNotice.Link" alt="Notice" />
-                                </div>
-                                <div *ngIf="!isImage(selectedNotice.Link)">
-
-                                    <iframe *ngIf="pdfUrl" [src]="pdfUrl" width="100%" height="500px" frameborder="0"
-                                        style="border: none; overflow: hidden;"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <ng-template #noNotice>
-                        <div class="notice-title">Please select a notice to view</div>
-                    </ng-template>
-
+          <div class="col-md-4">
+      <article class="item">
+        <div class="ticker-wrapper-v-image" style="background-image: url('assets/img/school/navbar-img.png');">
+          <ul class="news-ticker-v-image">
+            <li *ngFor="let notice of Notices"
+              (click)="showNotice($event, notice)"
+              style="border: 1px solid #eeeeee; padding: 10px">
+              <div class="thumbnail">
+                <div style="border: 1px solid #eeeeee; width: 80px">
+                  <div style="background-color: #082c5c"
+                    class="text-center">
+                    <span style="text-align: center; color: #ffffff">{{notice.CreatedDate | date:'dd'}}</span>
+                  </div>
+                  <div style="background-color: #f2f2f2"
+                    class="text-center">
+                    <span style="text-align: center; color: #caa545">{{notice.CreatedDate | date:'MMM'}}</span>
+                  </div>
                 </div>
+              </div>
+              <div>
+                <div style="
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                  ">
+                  {{ notice.EnglishTitle }}
+                </div>
+              </div>
+              <div class="clear"></div>
+            </li>
+          </ul>
+        </div>
+      </article>
+    </div>
+<div class="col-md-8">
+
+      <div *ngIf="selectedNotice; else noNotice">
+        <div class="notice-title">{{ selectedNotice.EnglishTitle }}</div>
+        <div class="notice-details">
+          <div class="notice-content">
+            <!-- Display the notice image or pdf here -->
+            <img *ngIf="isImage(selectedNotice.FileLink)"
+              [src]="'assets/img/school/notice/' + selectedNotice.FileLink"
+              alt="Notice" />
+            <div *ngIf="!isImage(selectedNotice.FileLink)">
+              <!-- PDF Content (Replace this with appropriate PDF viewer) -->
+
+              <iframe class="viewport"
+                width="100%"
+                frameBorder="0"
+                [src]="urlSafe"></iframe>
             </div>
+          </div>
+        </div>
+      </div>
+      <ng-template #noNotice>
+        <div class="notice-title">Please select a notice to view</div>
+      </ng-template>
+
+    </div>
         </div>
     </div>
 </section>

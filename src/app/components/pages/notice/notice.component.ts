@@ -1,133 +1,90 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeTranslationLoaderService } from 'src/services/home-translation-loader.service';
-import { arabic, bangla, english } from 'src/services/locale';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Subscription, forkJoin } from 'rxjs';
+import { EmitterService } from 'src/app/EmitterService';
+import { AppService } from 'src/app/app.service';
 
 @Component({
-  selector: 'notice',
+  selector: 'app-notice',
   templateUrl: './notice.component.html',
   styleUrls: ['./notice.component.scss'],
 })
-export class NoticeComponent implements OnInit {
-  selectedLanguage = '';
+export class NoticeComponent implements OnInit
+{
+  Notices = [];
+  subscription: Subscription;
+  loadingData = true;
+  urlSafe: SafeResourceUrl;
 
-  font = '';
 
-  dynamicTape = [
-    {
-      Id: 1,
-      Text: 'Alim 1st year Exam fee',
-      Link: 'Alim 1st year Exam fee.jpg',
-      Date: new Date('2023-09-11'),
-      Category: 'Alim',
-    },
-    {
-      Id: 2,
-      Text: 'Masters 2020-21 Registration card',
-      Link: 'Masters 2020-21 Registration card.jpg',
-      Date: new Date('2023-09-11'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 3,
-      Text: '2 Yearly leave 2023',
-      Link: '2 Yearly leave 2023.pdf',
-      Date: new Date('2023-09-11'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 4,
-      Text: 'শিক্ষার্থী আবদেন ফরম',
-      Link: 'StudentApplyForm.pdf',
-      Date: new Date('2023-10-26'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 5,
-      Text: 'আলিম ২০২৩-২০২৪ শিক্ষাবর্ষে উপবৃত্তি আবেদন ফরম',
-      Link: 'StipendApplyForm.pdf',
-      Date: new Date('2023-10-26'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 6,
-      Text: 'Fazil Reg. eSIF List',
-      Link: 'ESIF.pdf',
-      Date: new Date('2023-11-13'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 7,
-      Text: 'ইবতেদায়ী প্রথম থেকে দাখিল নবম শ্রেনির ভর্তি বিজ্ঞপ্তি',
-      Link: 'DakhilNotice.pdf',
-      Date: new Date('2023-11-15'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 8,
-      Text: 'ফাযিল ১ম বর্ষ ফরম পূরণ তালিকা',
-      Link: 'print-fazil-proble-list.pdf',
-      Date: new Date('2023-11-16'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 9,
-      Text: 'ALIM ESIF LIST-2025',
-      Link: '104702-Alim-eSIF-2025.pdf',
-      Date: new Date('2023-12-14'),
-      Category: 'Dakhil',
-    },
-    {
-      Id: 10,
-      Text: 'হিফয ও নাযেরা ভর্তি ২০২৪',
-      Link: '২০২৪.pdf',
-      Date: new Date('2024-03-24'),
-      Category: 'Dakhil',
-    },
-  ];
 
-  pdfUrl: SafeResourceUrl | undefined;
   selectedNotice: any;
 
-  constructor(
-    private sanitizer: DomSanitizer,
-    private _homeTranslationLoaderService: HomeTranslationLoaderService
-  ) {
-    this.dynamicTape.sort((a, b) => b.Date.getTime() - a.Date.getTime());
-    this._homeTranslationLoaderService.loadTranslations(
-      english,
-      bangla,
-      arabic
-    );
+  constructor(private emitterService: EmitterService,
+    public sanitizer: DomSanitizer, private appService: AppService,)
+  {
+
   }
 
-  // transform(pdfUrl) {
-  //   return this.sanitizer.bypassSecurityTrustResourceUrl(pdfUrl);
-  // }
-
-  ngOnInit(): void {
-    this.selectedLanguage = localStorage.getItem('selectedLanguage');
+  ngOnInit(): void
+  {
+    this.FetchData();
   }
 
-  GetFontName() {
-    switch (this.selectedLanguage) {
-      case 'en':
-        return 'Congenial';
-      case 'bn':
-        return 'HindSiliguri';
-      case 'ar':
-        return 'Jameel Noori Nastaleeq';
-    }
-  }
+FetchData() {
+  forkJoin([
+    this.appService.getNotices(),
+  ]).subscribe((response: any) => {
+    console.log(response, 'response FetchData');
 
-  showNotice(event: Event, notice: any) {
+    this.Notices = response[0].data
+      .filter((x) => x.IsActive === true);
+
+    this.Notices.sort((a, b) => b.Id - a.Id);
+
+    this.loadingData = false;
+  });
+}
+
+  showNotice(event: Event, notice: any)
+  {
     event.preventDefault();
     this.selectedNotice = notice;
-    const pdfPath = 'assets/img/school/notice/' + notice.Link + '#toolbar=0';
-    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(pdfPath);
+
+    let val = "";
+    if (this.selectedNotice.FileLink.includes('https://'))
+    {
+      val = this.selectedNotice.FileLink;
+    }
+    else
+    {
+      val = `https://${this.selectedNotice.FileLink}`
+    }
+
+    this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(val);
+
   }
 
-  isImage(link: string): boolean {
+  isImage(link: string): boolean
+  {
     return /\.(jpe?g|png|gif)$/i.test(link);
+  }
+
+  TransformUrl(value)
+  {
+    let val = "";
+    if (value.includes('https://'))
+    {
+      val = value;
+    }
+    else
+    {
+      val = `https://${value}`
+    }
+
+    this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(val);
+
+    return this.urlSafe;
+
   }
 }
