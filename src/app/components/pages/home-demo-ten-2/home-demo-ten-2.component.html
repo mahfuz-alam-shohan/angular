@@ -588,28 +588,27 @@
               Principal's Message
             </h3>
 
-            <article class="item">
-              <a routerLink="#" class="thumb">
-                <span class="fullimage cover" role="img">
-                  <img
-                    *ngIf="GBMessageShown && GBMessageShown.length > 1"
-                    [src]="GBMessageShown[1].GBImagePath"
-                    alt=""
-                  />
-                </span>>
-              </a>
-              <div class="info">
-                <h5>
-                  <a routerLink="/principal-message">Qazi Abdul Alim Rezvi</a>
-                </h5>
-                <h6>
-                  <a routerLink="/administration/message-of-principal"
-                    >Principal's Message</a
-                  >
-                </h6>
-              </div>
-              <div class="clear"></div>
-            </article>
+           <article class="item">
+  <a routerLink="#" class="thumb">
+    <span class="fullimage cover" role="img">
+      <img
+        *ngIf="GBMessageShown && GBMessageShown.length > 7 && GBMessageShown[7].GBImagePath"
+        [src]="GBMessageShown[7].GBImagePath"
+        alt="Principal"
+      />
+    </span>
+  </a>
+  <div class="info">
+    <h5>
+      <a routerLink="/principal-message">Qazi Abdul Alim Rezvi</a>
+    </h5>
+    <h6>
+      <a routerLink="/administration/message-of-principal">Principal's Message</a>
+    </h6>
+  </div>
+  <div class="clear"></div>
+</article>
+
           </section>
           <!-- FaceBook Section -->
           <section

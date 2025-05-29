@@ -190,7 +190,7 @@ export class HomeDemoTen2Component implements OnInit {
           let achievements_data = this.ContentData.filter(
               (x) => x.ContentCategoryName == "Achievements"
           );
-          this.all_achievement_data = achievements_data;
+          this.all_achievement_data = achievements_data.sort((a, b) => b.Id - a.Id);
           this.foundAchivements = this.all_achievement_data.slice(0, 6);
           console.log(this.foundAchivements, "All Achievemet Data");
       }
@@ -201,7 +201,7 @@ export class HomeDemoTen2Component implements OnInit {
         let news_data = this.ContentData.filter(
           (x) => x.ContentCategoryName == "News And Events"
         );
-        this.all_news_and_event_data = news_data;
+        this.all_news_and_event_data = news_data.sort((a, b) => b.Id - a.Id);
         this.foundnews = this.all_news_and_event_data.slice(0, 4);
         console.log(this.foundnews, "All News and eEvent Data");
       }

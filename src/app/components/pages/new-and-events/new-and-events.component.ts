@@ -82,15 +82,17 @@ export class NewAndEventsComponent implements OnInit
         this.ContentData = response.data;
         console.log(this.ContentData, "Ramu Content Data")
 
-        if (this.ContentData != null)
-        {
-          let news = this.ContentData.filter(
-            (x) => x.ContentCategoryName == "News And Events"
-          );
-          this.News_event_data = news;
-          // this.foundnews = this.News_event_data.ShowAttachments;
-          console.log(this.News_event_data, "All News Event Data",);
-        }
+      if (this.ContentData != null) {
+  // Filter News And Events
+  let news = this.ContentData.filter(
+    (x) => x.ContentCategoryName == 'News And Events'
+  );
+
+  // Sort by latest ID (descending)
+  this.News_event_data = news.sort((a, b) => b.Id - a.Id);
+  console.log(this.News_event_data, 'Latest First News And Events');
+}
+
 
       });
   }

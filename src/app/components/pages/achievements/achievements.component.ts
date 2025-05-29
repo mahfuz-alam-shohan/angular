@@ -71,7 +71,7 @@ export class AchievementsComponent implements OnInit {
         let news = this.ContentData.filter(
           (x) => x.ContentCategoryName == "Achievements"
         );
-        this.News_event_data = news;
+        this.News_event_data = news.sort((a, b) => b.Id - a.Id);
         // this.foundnews = this.News_event_data.ShowAttachments;
         console.log(this.News_event_data, "All Achievements Data");
       }
