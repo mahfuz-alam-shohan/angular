@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  c: "mi3xkNpDMBw=",
-  k: "OLCZ5OHN91o=",
+  c: 'q79IpFTQj6c=',
+  k: '0OdlKNLLTUzVS5X9E7CmNQ=='
   // c: "EMzt6h8TXkY=",
   // k: "9d9DiTkBwpbbC2ZMUmlHTQ==",
   // k: "qUklnbq/LUT8VmJzGxftyw==",
