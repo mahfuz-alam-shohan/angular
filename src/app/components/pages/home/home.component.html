@@ -1,0 +1,694 @@
+<app-navbar-style-two-2></app-navbar-style-two-2>
+
+<section
+  class="blog-details-area pb-100"
+  style="
+    background-image: url('assets/img/banner-image/bg-popup.png');
+    /* background-size: cover; */
+
+    /* background-repeat: repeat-y; */
+    padding-top: 20px;
+    font-family: 'HindSiliguri';
+  "
+>
+  <!-- Start Login Button----- -->
+  <div class="fixed-button">
+    <a
+      href="https://portal.cloudcampus24.com/UserAuth/Login?ReturnUrl=%2F"
+      routerLinkActive="active"
+      class="btn"
+      ><i class="fas fa-sign-in-alt"></i> Login
+    </a>
+  </div>
+  <!-- End Login Button----- -->
+  <!-- Leatest Notice Section -->
+  <div class="container" style="background: transparent; margin-bottom: 15px">
+    <div
+      class="row"
+      style="
+        background-image: url('/assets/img/school/bg-popup.png');
+        background-size: 100px;
+        margin: 0;
+        border: 2px solid #127176;
+      "
+    >
+      <div
+        class="col-md-auto"
+        style="background-color: #127176; text-align: center"
+      >
+        <h4 style="margin-top: 0.25em; color: #ffffff">Latest Notices:</h4>
+      </div>
+
+      <div class="col-md-10">
+        <ng-container *ngIf="Notices.length == 0">
+          <a>
+            <i class="fas fa-bell"></i>
+            No Notices Found
+          </a>
+        </ng-container>
+        <div *ngIf="Notices.length != 0">
+          <ng-marquee [stopOnHover]="true" duration="40s">
+            <mark class="ticker-custom" *ngFor="let data of Notices">
+              <a
+                (click)="onNavigate(data.FileLink)"
+                target="_blank"
+                target="_blank"
+                >{{ data.EnglishTitle }}</a
+              >
+            </mark>
+          </ng-marquee>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Leatest Notice Section Ends -->
+
+  <div class="container" style="background: transparent">
+    <div class="row">
+      <!-- Left side Section -->
+      <div class="col-lg-8 col-md-12">
+        <div class="blog-details-desc">
+          <!-- Slider -->
+          <div
+            id="machine-learning-carousel"
+            class="carousel slide"
+            data-ride="carousel"
+            style="padding: 20px; border: 1px solid #eeeeee"
+          >
+            <ol class="carousel-indicators">
+              <ng-container *ngFor="let slide of slides; index as i">
+                <li
+                  data-target="#machine-learning-carousel"
+                  [attr.data-slide-to]="i"
+                  [class.active]="i === 0"
+                ></li>
+              </ng-container>
+            </ol>
+            <div
+              id="carouselExampleCaptions"
+              class="carousel slide"
+              data-bs-ride="carousel"
+            >
+              <div class="carousel-inner" role="listbox">
+                <div
+                  class="carousel-item"
+                  *ngFor="let slide of slides; let i = index"
+                  [class.active]="i === 0"
+                >
+                  <img
+                    [src]="slide.ImageLink"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                </div>
+              </div>
+
+              <a
+                class="carousel-control-prev"
+                href="#carouselExampleCaptions"
+                role="button"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </a>
+              <a
+                class="carousel-control-next"
+                href="#carouselExampleCaptions"
+                role="button"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </a>
+            </div>
+          </div>
+          <!-- Welcome Section -->
+          <div
+            class="article-content"
+            style="
+              padding: 20px;
+              padding-top: 0;
+              border: 1px solid #eeeeee;
+              margin-top: 10px;
+            "
+          >
+            <h3
+              style="
+                border-bottom: 2px solid #eeeeee;
+                line-height: 2.2;
+                margin-top: 0;
+              "
+            >
+              Welcome to Jamea Ahmadia Sunnia Kamil Madrasah
+            </h3>
+            <div *ngIf="HomeContent != null">
+              <p
+                style="text-align: justify"
+                [innerHTML]="truncateText(HomeContent.DetailsEn, 1000)"
+              ></p>
+            </div>
+            <div>
+              <a routerLink="/welcome">Read more</a>
+            </div>
+          </div>
+        </div>
+        <!-- Notice -->
+        <section
+  class="widget widget_karlson_posts_thumb"
+  style="background-image: url('/assets/img/school/bg-popup.png'); background-size: 100px; padding: 20px; margin-top: 10px; border: 1px solid #eeeeee;"
+>
+  <h3 class="widget-title">Notices</h3>
+  <article class="item">
+    <div class="tab-container">
+      <!-- Notice Header with Dropdown and Tabs -->
+      <!-- Tabs for Filtering Notices -->
+      <ul class="nav nav-pills" id="myTab" role="tablist" style="margin-bottom: 20px;">
+        <li class="nav-item" role="presentation">
+          <button
+            class="nav-link active tabsButton"
+            id="tab-1"
+            data-bs-toggle="tab"
+            data-bs-target="#content-1"
+            type="button"
+            role="tab"
+            aria-controls="content-1"
+            aria-selected="true"
+            (click)="onSelectCategory('All Notices')"
+          >
+            All
+          </button>
+        </li>
+        <ng-container *ngFor="let item of notice_cat_values">
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link tabsButton"
+              [class.active]="selectedCategory === item"
+              (click)="onSelectCategory(item)"
+            >
+              {{ item }}
+            </button>
+          </li>
+        </ng-container>
+      </ul>
+
+      <!-- Tab Content -->
+      <div class="tab-content" id="myTabContent" style="font-family: 'Congenial'">
+        <div class="tab-pane fade show active" id="content-1" role="tabpanel">
+          <article class="item">
+            <div class="ticker-wrapper-v-image" style="font-family: 'Congenial'">
+              <ul class="news-ticker-v-image" *ngIf="filteredNotices && filteredNotices.length != 0">
+                <li *ngFor="let data of filteredNotices" style="border: 1px solid #eeeeee; padding: 10px; margin-bottom: 10px;">
+                  <div style="display: flex; justify-content: space-between;">
+                    <div style="display: flex; align-items: center;">
+                      <div style="border: 1px solid #eeeeee; width: 80px; margin-right: 15px;">
+                        <div style="background-color: #100278" class="text-center">
+                          <span style="text-align: center; color: white">{{ data.CreatedDate | date : "dd" }}</span>
+                        </div>
+                        <div style="background-color: #fefeb4" class="text-center">
+                          <span style="text-align: center; color: #fc9c79">{{ data.CreatedDate | date : "MM" }}</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
+                          <a class="notice-link" [href]="data.FileLink" target="_blank" style="text-decoration: none; color: inherit;">
+                            {{ data.EnglishTitle }}
+                          </a>
+                        </div>                       
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+           
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+    <div class="text-end" style="padding-top: 5px">
+      <a routerLink="/notice">View All</a>
+    </div>
+  </article>
+</section>
+
+        <!-- News Event And Achievements -->
+        <div class="blog-details-desc" style="background: transparent">
+          <div class="row">
+            <div class="col-lg-6 col-md-6">
+              <div class="single-blog-post">
+                <aside class="widget-area widget-area1" id="secondary">
+                  <section
+                    class="widget widget_karlson_posts_thumb"
+                    style="
+                      padding: 20px;
+                      margin-top: 10px;
+                      border: 1px solid #eeeeee;
+                    "
+                  >
+                    <h3 class="widget-title">Achievements</h3>
+                    <div *ngFor="let item of foundAchivements">
+                      <div class="container">
+                        <div
+                          class="row align-items-center"
+                          style="padding-top: 10px; padding-bottom: 10px"
+                        >
+                          <div class="col-lg-5 col-md-12">
+                            <div class="about-image">
+                              <img
+                                [src]="
+                                  item.ShowAttachments[
+                                    item.ShowAttachments.length - 1
+                                  ].FilePath
+                                "
+                                alt="image"
+                                style="height: 70px; width: 100px"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-7 col-md-12">
+                            <div>
+                              <span
+                                [innerHTML]="(item.TitleEn)"
+                              >
+                              </span>
+                            </div>
+                            <div>
+                              <a
+                                [routerLink]="['/achievements', item.Id]"
+                                target="_blank"
+                                style="text-decoration: unset; color: #100278"
+                                >View Details</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </aside>
+              </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+              <div class="single-blog-post">
+                <aside class="widget-area widget-area1" id="secondary">
+                  <section
+                    class="widget widget_karlson_posts_thumb"
+                    style="
+                      padding: 20px;
+                      margin-top: 10px;
+                      border: 1px solid #eeeeee;
+                    "
+                  >
+                    <h3 class="widget-title">News & Events</h3>
+                    <div *ngFor="let item of foundnews">
+                      <div class="container">
+                        <div
+                          class="row align-items-center"
+                          style="padding-top: 10px; padding-bottom: 10px"
+                        >
+                          <div class="col-lg-5 col-md-12">
+                            <div class="about-image">
+                              <img
+                                [src]="
+                                  item.ShowAttachments[
+                                    item.ShowAttachments.length - 1
+                                  ].FilePath
+                                "
+                                style="height: 70px; width: 100px"
+                                alt="image"
+                              />
+                            </div>
+                          </div>
+                          <div class="col-lg-7 col-md-12">
+                            <div>
+                              <span
+                               [innerHTML]="(item.TitleEn)"
+                              >
+                              </span>
+                            </div>
+                            <div>
+                              <a
+                                [routerLink]="['/news-and-events', item.Id]"
+                                target="_blank"
+                                style="text-decoration: unset; color: #100278"
+                                >View Details</a
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+                </aside>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Youtube -->
+        <iframe
+          width="100%"
+          height="315"
+          src="https://www.youtube.com/embed/MAz9kRnvSYE"
+          title="YouTube video player"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+      <!-- Left side Section Ends-->
+      <!-- Right Side Section -->
+      <div class="col-lg-4 col-md-12">
+        <aside class="widget-area widget-area1" id="secondary">
+          <!-- Online Admisstion Button -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              background-size: 100px;
+              padding: 20px;
+              margin-top: 10px;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <h3
+              class="widget-title"
+              style="text-align: center; font-family: 'Congenial'"
+            >
+              Online Admission
+            </h3>
+
+            <article style="display: flex; flex-wrap: wrap; align-items: center; gap: 15px; padding: 10px; justify-content: center;">
+  <a routerLink="#" class="thumb">
+    <span
+      style="
+        background-image: url('assets/img/banner-image/logo1.png');
+        width: 80px;
+        height: 83px;
+        background-size: cover;
+        background-position: center;
+        display: inline-block;
+        border-radius: 5px;
+      "
+      role="img"
+    ></span>
+  </a>
+
+  <div class="info">
+    <a
+      href="admission-links"
+      target="_blank"
+      rel="noopener"
+      style="
+        background-color: #093032;
+        color: white;
+        border: none;
+        padding: 12px 25px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        border-radius: 5px;
+        white-space: nowrap;
+      "
+    >
+      Online Admission
+    </a>
+  </div>
+</article>
+
+          </section>
+          <!-- Founder Section -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              background-size: 100px;
+              padding: 20px;
+              padding-bottom: 0;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <article class="item text-center">
+              <h3 class="widget-title" style="padding-bottom: 8px">
+                Founder and Patronage
+              </h3>
+              <div
+                class="machine-learning-slider owl-carousel owl-theme justify-content-center align-items-center"
+                style="padding-top: 0; padding-bottom: 35px"
+              >
+                <div class="pd-carousel" id="pdCarousel1">
+                  <ul class="pd-carousel__items">
+                    <li class="pd-carousel__item">
+                      <div class="d-table">
+                        <div class="d-table-cell">
+                          <div class="container mt-80">
+                            <div
+                              class="article-image justify-content-center align-items-center"
+                            >
+                              <img
+                                src="assets/img/blog-image/1_Syed_Ahmad_Shah_Sirikoti_(R.A).png"
+                                alt="image"
+                              />
+                            </div>
+                            <div style="margin-top: 20px !important">
+                              <p class="nameP">
+                                Syed Ahmad Shah Sirikoti (R.A)
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="pd-carousel__item">
+                      <div class="d-table">
+                        <div class="d-table-cell">
+                          <div class="container mt-80">
+                            <div
+                              class="article-image justify-content-center align-items-center"
+                            >
+                              <img
+                                src="assets/img/blog-image/2_Syed_Tayyab_Shah_(R.A).jpeg"
+                                alt="image"
+                              />
+                            </div>
+                            <div style="margin-top: 20px !important">
+                              <p class="nameP" style="font-family: 'Congenial'">
+                                Syed Tayyab Shah (R.A)
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="pd-carousel__item">
+                      <div class="d-table">
+                        <div class="d-table-cell">
+                          <div class="container mt-80">
+                            <div
+                              class="article-image justify-content-center align-items-center"
+                            >
+                              <img
+                                src="assets/img/blog-image/3_Syed_Taher_Shah_(M.J.A) .jpg"
+                                alt="image"
+                              />
+                            </div>
+                            <div style="margin-top: 20px !important">
+                              <p class="nameP" style="font-family: 'Congenial'">
+                                Syed Taher Shah (M.J.A)
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="pd-carousel__item">
+                      <div class="d-table">
+                        <div class="d-table-cell">
+                          <div class="container mt-80">
+                            <div
+                              class="article-image justify-content-center align-items-center"
+                            >
+                              <img
+                                src="assets/img/blog-image/4_Syed_Sabir_Shah_(M.J.A).jpeg"
+                                alt="image"
+                              />
+                            </div>
+                            <div style="margin-top: 20px !important">
+                              <p class="nameP" style="font-family: 'Congenial'">
+                                Syed Sabir Shah (M.J.A)
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+          </section>
+          <!-- Chairman Section -->
+          <section
+  class="widget widget_karlson_posts_thumb"
+  style="
+    background-image: url('/assets/img/school/bg-popup.png');
+    background-size: 100px;
+    padding: 20px;
+    margin-top: 10px;
+    border: 1px solid #eeeeee;
+  "
+>
+  <h3 class="widget-title" style="font-family: 'Congenial'">
+    Chairman's Message
+  </h3>
+
+  <article class="item">
+    <a routerLink="/chairman-message" class="thumb">
+      <span class="fullimage cover" role="img">
+        <img 
+          *ngIf="GBMessageShown && GBMessageShown.length > 0 && GBMessageShown[0].GBImagePath"
+          [src]="GBMessageShown[0].GBImagePath"
+          alt="Chairman's Photo"
+        />
+      </span>
+    </a>
+    <div class="info">
+      <h5>
+        <a routerLink="/chairman-message">Alhaj Abul Mohsin Md. Yeahia Khan</a>
+      </h5>
+      <h6>
+        <a routerLink="/administration/message-of-chairman">Chairman's Message</a>
+      </h6>
+    </div>
+    <div class="clear"></div>
+  </article>
+</section>
+          <!-- Principal Section -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              background-size: 100px;
+              padding: 20px;
+              margin-top: 10px;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <h3 class="widget-title" style="font-family: 'Congenial'">
+              Principal's Message
+            </h3>
+
+           <article class="item">
+  <a routerLink="#" class="thumb">
+    <span class="fullimage cover" role="img">
+      <img
+        *ngIf="GBMessageShown && GBMessageShown.length > 7 && GBMessageShown[7].GBImagePath"
+        [src]="GBMessageShown[7].GBImagePath"
+        alt="Principal"
+      />
+    </span>
+  </a>
+  <div class="info">
+    <h5>
+      <a routerLink="/principal-message">Qazi Abdul Alim Rezvi</a>
+    </h5>
+    <h6>
+      <a routerLink="/administration/message-of-principal">Principal's Message</a>
+    </h6>
+  </div>
+  <div class="clear"></div>
+</article>
+
+          </section>
+          <!-- FaceBook Section -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              background-size: 100px;
+              padding: 20px;
+              margin-top: 10px;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <h3 class="widget-title" style="font-family: 'Congenial'">
+              Facebook Page
+            </h3>
+            <article class="item">
+              <iframe
+                src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fjaskmofficials&tabs&width=315&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId"
+                width="315"
+                height="130"
+                style="border: none; overflow: hidden"
+                scrolling="no"
+                frameborder="0"
+                allowfullscreen="true"
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+              ></iframe>
+            </article>
+          </section>
+          <!-- Prospectus  -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              font-family: 'Congenial';
+              background-size: 100px;
+              padding: 20px;
+              margin-top: 10px;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <div class="prospectus">
+              <h2>Prospectus</h2>
+              <div class="prospectus-heading">
+                <h3>Prospectus of</h3>
+                <a href="/prospectus">
+                  <h5 class="viewAll">
+                    Jamea Ahmadia Sunnia Kamil Madrasah
+                  </h5></a
+                >
+              </div>
+            </div>
+          </section>
+          <!-- Visitor Counter -->
+          <section
+            class="widget widget_karlson_posts_thumb"
+            style="
+              background-image: url('/assets/img/school/bg-popup.png');
+              background-size: 100px;
+              padding: 20px;
+              margin-top: 10px;
+              border: 1px solid #eeeeee;
+            "
+          >
+            <h3 class="widget-title" style="font-family: 'Congenial'">
+              Visitor Counter
+            </h3>
+            <article class="item">
+              <div class="info" style="font-family: 'Congenial'">
+                <h6>Today Total Visitors : 00</h6>
+                <h6>Weekly Total Visitors : 000</h6>
+                <h6>Monthly Total Visitors : 000</h6>
+                <h6>Yearly Total Visitors : 0000</h6>
+                <h6>Grand Total From Date: 00000</h6>
+              </div>
+              <div class="clear"></div>
+            </article>
+          </section>
+        </aside>
+      </div>
+      <!-- Right Side Section Ends-->
+    </div>
+  </div>
+</section>
