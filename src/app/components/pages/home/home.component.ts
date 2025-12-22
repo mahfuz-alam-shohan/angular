@@ -11,6 +11,10 @@ import { AppService } from "src/app/app.service";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent implements OnInit, OnDestroy {
+  heroTitle = "Ispahani Public School & College";
+  heroTaglinePrefix = "Enter To Learn,";
+  heroTaglineHighlight = "Leave To Serve";
+  heroWelcomeLabel = "Welcome";
   cardGroups: any[][] = [];
   cardGroupsNews: any[][] = [];
 
@@ -38,16 +42,69 @@ export class HomeComponent implements OnInit, OnDestroy {
   ImageAlbums: any;
   ImageAlbumShown = [];
   GBMessages: any;
+  leaderCards: any[] = [];
   GBMessageShown = [];
   foundnews: any;
   foundAchivements: any;
   foundClubs: any;
+  galleryImages: string[] = [];
+  houseCards: any[] = [];
+  learningCards = [
+    {
+      label: "HTML Editor",
+      icon: "fa-brands fa-html5",
+      color: "#f97316",
+      link: "/online-html-editor",
+    },
+    {
+      label: "C/C++ Editor",
+      icon: "fa-solid fa-code",
+      color: "#0369a1",
+      link: "/online-c-editor",
+    },
+    {
+      label: "Python Interpreter",
+      icon: "fa-brands fa-python",
+      color: "#facc15",
+      link: "/online-python-editor",
+    },
+    {
+      label: "Painting Studio",
+      icon: "fa-solid fa-palette",
+      color: "#f43f5e",
+      link: "/paint-studio",
+    },
+    {
+      label: "Solar System",
+      icon: "fa-solid fa-earth-asia",
+      color: "#16a34a",
+      link: "/solar-system",
+    },
+    {
+      label: "Conics Explorer",
+      icon: "fa-solid fa-circle-notch",
+      color: "#4338ca",
+      link: "/learn-conics",
+    },
+    {
+      label: "Learn Physics",
+      icon: "fa-solid fa-atom",
+      color: "#6b21a8",
+      link: "/learn-physics",
+    },
+    {
+      label: "Learn Chemistry",
+      icon: "fa-solid fa-flask-vial",
+      color: "#0f766e",
+      link: "/learn-chemistry",
+    },
+  ];
   randomBackgroundColor: string = "#000000";
   hoverShadowColor: string = "#00000033";
   all_achievement_data: any;
   all_news_and_event_data: any;
 
- 
+  
   find_category: any;
   urlSafe: SafeResourceUrl;
   selectedNotice: any;
@@ -63,19 +120,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.subscription = this.emitterService.currentMessage.subscribe(
       (message) => {
         if (message === true) {
-          let mainData = localStorage.getItem("mainData");
-
-          if (mainData != null) {
-            this.ContentData = JSON.parse(mainData);
-            this.initializeAchievementData();
-            this.initializeNewsEventData();
-          }
+          this.loadMainData();
+          this.initializeAchievementData();
+          this.initializeNewsEventData();
+          this.syncHeroFromMainData();
         }
       }
     );
   }
 
   ngOnInit(): void {
+    this.loadMainData();
+    this.syncHeroFromMainData();
     forkJoin([this.appService.getNotices()]).subscribe((response: any) => {
       this.Notices = response[0].data.filter((x) => x.ShowScroll === true);
       this.Notices.sort((a, b) => b.Id - a.Id);
@@ -168,6 +224,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       // To get Slider Data
       this.slides = response[5].data;
       console.log(this.slides, "Today Slides");
+      this.buildGallery();
       // To get Welcome Message
       if (this.ContentData != null) {
         let homeContent = this.ContentData.filter(
@@ -185,6 +242,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       );
       this.GBMessageShown = filteredGBM;
       console.log(this.GBMessageShown, "GBMessageShown");
+      this.buildLeaderCards();
 
       // To get Achievement Data
       if (this.ContentData != null) {
@@ -216,6 +274,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.foundClubs = this.club_data;
         console.log(this.foundClubs, "All club Data");
       }
+      this.buildHouseCards();
       // To get Video Album Data
 
       this.VideoAlbums = response[2].data;
@@ -237,6 +296,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
 
       this.loadingData = false;
+      this.buildGallery();
     });
   }
   onSelectCategory(category: string): void {
@@ -277,11 +337,15 @@ export class HomeComponent implements OnInit, OnDestroy {
     return /\.(jpe?g|png|gif)$/i.test(link);
   }
   TransformUrl(value) {
-    if (value.includes("https://")) {
-      return value;
-    } else {
-      return `https://${value}`;
+    if (!value) {
+      return "#";
     }
+
+    const link = value.toString();
+    if (link.startsWith("http://") || link.startsWith("https://")) {
+      return link;
+    }
+    return `https://${link}`;
   }
 
   onNavigate(url: string) {
@@ -310,14 +374,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
   // Test truncate starts
   truncateText(text, maxLength) {
-    // Check if the text length is greater than the maximum length
-    if (text.length > maxLength) {
-      // Truncate the text to the maximum length and append "..." at the end
-      return text.substring(0, maxLength) + "...";
-    } else {
-      // If the text length is within the maximum length, return the original text
-      return text;
+    if (!text) {
+      return \"\";
     }
+    const value = text.toString();
+    if (value.length > maxLength) {
+      return value.substring(0, maxLength) + \"...\";
+    }
+    return value;
   }
 
   getMessageHref(GBDesignationName: string): string {
@@ -359,6 +423,97 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   showDiv(divId: string) {
     this.selectedDiv = divId;
+  }
+
+  private loadMainData(): void {
+    const stored = localStorage.getItem("mainData");
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (parsed?.SiteMapList) {
+        this.MainData = parsed;
+      } else {
+        this.ContentData = parsed;
+      }
+    }
+  }
+
+  private syncHeroFromMainData(): void {
+    if (this.MainData?.ClientName) {
+      this.heroTitle = this.MainData.ClientName;
+    }
+    const slogan = this.MainData?.LocalOptions?.find?.(
+      (opt) => opt.DisplayName === "Slogan" || opt.DisplayName === "Tagline"
+    );
+    if (slogan?.TextValue) {
+      const [prefix, highlight] = slogan.TextValue.split("|");
+      this.heroTaglinePrefix = prefix?.trim() || this.heroTaglinePrefix;
+      this.heroTaglineHighlight = highlight?.trim() || this.heroTaglineHighlight;
+    }
+  }
+
+  private buildLeaderCards(): void {
+    const preferredOrder = [
+      { key: "Chief Patron", label: "Chief Patron" },
+      { key: "Chairmen", label: "Chairman" },
+      { key: "Principal", label: "Principal" },
+    ];
+
+    this.leaderCards = preferredOrder
+      .map((role) => {
+        const match = this.GBMessages?.find(
+          (message) => message.GBDesignationName === role.key
+        );
+
+        const summary = match?.MessageEn || match?.MessageBn || match?.Message;
+
+        return {
+          roleLabel: role.label,
+          name: match?.GBName || match?.GBDesignationName,
+          photo: match?.GBImagePath,
+          message: summary ? this.truncateText(summary, 140) : "",
+          routerLink: this.getMessageHref(role.key),
+        };
+      })
+      .filter((card) => card.name || card.photo || card.message);
+  }
+
+  private buildGallery(): void {
+    const gallery: string[] = [];
+
+    if (Array.isArray(this.slides)) {
+      gallery.push(
+        ...this.slides
+          .map((slide: any) => slide?.ImageLink)
+          .filter((link: string) => Boolean(link))
+      );
+    }
+
+    if (!gallery.length && Array.isArray(this.ImageAlbums)) {
+      gallery.push(
+        ...this.ImageAlbums
+          .map((album: any) => album?.ImageLink || album?.CoverImage || album?.FilePath)
+          .filter((link: string) => Boolean(link))
+      );
+    }
+
+    this.galleryImages = gallery.slice(0, 6);
+  }
+
+  private buildHouseCards(): void {
+    const clubItems = Array.isArray(this.foundClubs) ? this.foundClubs.slice(0, 4) : [];
+    const colors = ["red", "green", "yellow", "orange"];
+
+    this.houseCards = clubItems.map((club, index) => {
+      const attachments = club?.ShowAttachments || [];
+      const imagePath = attachments.length
+        ? attachments[attachments.length - 1].FilePath
+        : club?.ImageLink;
+      return {
+        title: club?.TitleEn || club?.ContentNameEn || club?.ContentCategoryName,
+        image: imagePath,
+        color: colors[index % colors.length],
+      };
+    });
   }
 }
 
