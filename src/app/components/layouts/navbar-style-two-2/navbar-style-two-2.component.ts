@@ -39,6 +39,12 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
   AllmenuItems: any[];
   client_basis: any;
   onl_button: any;
+  brandName = "Ispahani Public School & College";
+  brandLocation = "Comilla Cantonment";
+  brandInitials = "IP";
+  codes: string[] = ["EIIN 105826", "College 7925", "School 7801"];
+  mobileOpen = false;
+  openMap: Record<number, boolean> = {};
 
   constructor(
     private appService: AppService,
@@ -78,6 +84,7 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
           this.mainData = response[0].data;
           this.client_basis = response[0].data.LocalOptions;
           console.log(this.client_basis, "Home Basis");
+          this.syncBranding();
 
           this.sortedNotice = this.sortByStartDate(response[1].data);
           console.log(this.sortedNotice, "Sorted Notices");
@@ -238,6 +245,14 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
     window.open(MyUrl, "_blank");
   }
 
+  TransformUrl(value: string) {
+    if (!value) return "#";
+    if (value.startsWith("http://") || value.startsWith("https://")) {
+      return value;
+    }
+    return `https://${value}`;
+  }
+
   NoAdmissionAlert() {
     alert("Admission services not open yet.");
     return;
@@ -251,5 +266,52 @@ export class NavbarStyleTwo2Component implements OnInit, OnDestroy {
     return array.sort((a: any, b: any) => {
       return this.getTimeFull(b.CreatedDate) - this.getTimeFull(a.CreatedDate);
     });
+  }
+
+  toggleMobileNav(): void {
+    this.mobileOpen = !this.mobileOpen;
+  }
+
+  toggleChild(id: number): void {
+    if (!id) return;
+    this.openMap[id] = !this.openMap[id];
+  }
+
+  isInternal(url: string | undefined | null): boolean {
+    if (!url) {
+      return true;
+    }
+    return !/^https?:\/\//i.test(url);
+  }
+
+  private syncBranding(): void {
+    const clientName = this.mainData?.ClientName || this.mainData?.EnglishName;
+    const address = this.mainData?.Address || this.mainData?.Location;
+    const codes =
+      this.mainData?.LocalOptions?.filter?.((x: any) =>
+        ["eiin", "college code", "school code", "code"].includes(
+          (x.DisplayName || "").toLowerCase()
+        )
+      ) || [];
+
+    this.brandName = clientName || this.brandName;
+    this.brandLocation = address || this.brandLocation;
+    this.brandInitials = this.brandName
+      .split(" ")
+      .filter(Boolean)
+      .slice(0, 2)
+      .map((word) => word[0])
+      .join("")
+      .toUpperCase();
+
+    if (codes.length) {
+      this.codes = codes
+        .map((x: any) => {
+          const label = x.DisplayName || "Code";
+          const value = x.TextValue || x.Value;
+          return value ? `${label}: ${value}` : null;
+        })
+        .filter(Boolean);
+    }
   }
 }

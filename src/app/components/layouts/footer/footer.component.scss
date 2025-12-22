@@ -1,37 +1,97 @@
-.area1 {
-  position: relative;
-  z-index: 1;
+:host {
+  display: block;
+}
 
-  background: {
-    image: url('/assets/img/banner-image/footer.png');
-    // position: center center;
-    size: cover;
-    repeat: no-repeat;
+.ipsc-footer {
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(15, 23, 42, 0.04));
+  border-top: 1px solid #e2e8f0;
+  padding: 2rem 0;
+  color: #0f172a;
+}
+
+.wrap {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 1.25rem;
+  align-items: center;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 }
 
-.responsive-map {
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-  height: 0;
-}
-.responsive-map iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  position: absolute;
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+
+  @media (max-width: 900px) {
+    justify-content: center;
+  }
 }
 
-
-.card:hover {
-    background-color: #093032;
-    color: white;
-    font-weight: 600;
+.brand-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: #fff;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
 }
 
-.card {
-    background-color: #303030;
-    color: white;
+.footer-title {
+  margin: 0;
+  font-weight: 900;
+}
+
+.footer-subtitle {
+  margin: 0.15rem 0 0;
+  color: #475569;
+}
+
+.footer-links {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: start;
+
+  a {
+    color: #0f172a;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 0.3rem 0;
+  }
+
+  a:hover {
+    color: #1d4ed8;
+  }
+
+  @media (max-width: 900px) {
+    justify-items: center;
+  }
+}
+
+.footer-meta {
+  text-align: right;
+  color: #475569;
+  font-weight: 600;
+
+  @media (max-width: 900px) {
+    text-align: center;
+  }
+}
+
+.footer-credit {
+  margin: 0.2rem 0 0;
 }

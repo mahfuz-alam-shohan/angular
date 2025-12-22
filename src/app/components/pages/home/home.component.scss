@@ -2,9 +2,9 @@
   display: block;
 }
 
-$primary: #b91c1c;
-$accent: #2563eb;
-$muted: #64748b;
+$primary: #2563eb;
+$accent: #059669;
+$muted: #475569;
 $surface: #ffffff;
 $surface-alt: #f8fafc;
 $shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
@@ -24,8 +24,8 @@ $shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
   padding: 4rem 1rem;
   overflow: hidden;
   border-bottom: 1px solid rgba(148, 163, 184, 0.3);
-  background: radial-gradient(circle at 12% 20%, rgba(185, 28, 28, 0.16), transparent 48%),
-    radial-gradient(circle at 88% 30%, rgba(37, 99, 235, 0.16), transparent 48%),
+  background: radial-gradient(circle at 12% 20%, rgba(37, 99, 235, 0.15), transparent 48%),
+    radial-gradient(circle at 88% 30%, rgba(5, 150, 105, 0.15), transparent 48%),
     linear-gradient(135deg, #fff, #f8fafc);
   background-size: cover;
 }
@@ -33,7 +33,7 @@ $shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.25));
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.35), rgba(37, 99, 235, 0.25));
   backdrop-filter: blur(2px);
   opacity: 0.65;
 }
@@ -106,7 +106,7 @@ $shadow: 0 20px 60px rgba(15, 23, 42, 0.12);
 .cta.primary {
   background: linear-gradient(135deg, $primary, darken($primary, 8%));
   color: #fff;
-  box-shadow: 0 12px 30px rgba(185, 28, 28, 0.24);
+  box-shadow: 0 12px 30px rgba(37, 99, 235, 0.24);
 }
 
 .cta.ghost {
